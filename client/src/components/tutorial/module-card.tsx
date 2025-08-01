@@ -36,26 +36,23 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
   
   const isCompleted = progress?.completed || false;
   const isInProgress = (progress?.percentage || 0) > 0 && !isCompleted;
-  const isLocked = index > 0; // Simple locking logic - you can enhance this
+  const isLocked = false; // All modules are unlocked
   
   const getStatusColor = () => {
     if (isCompleted) return "border-[hsl(120,100%,50%)]/30 bg-[hsl(120,100%,50%)]/5";
     if (isInProgress) return "border-[hsl(207,90%,54%)]/30 bg-[hsl(207,90%,54%)]/5";
-    if (isLocked) return "border-gray-600/30 opacity-60";
     return "border-[hsl(240,3.7%,15.9%)]";
   };
 
   const getStatusIcon = () => {
     if (isCompleted) return { icon: Check, color: "text-[hsl(120,100%,50%)] bg-[hsl(120,100%,50%)]" };
     if (isInProgress) return { icon: Play, color: "text-white bg-[hsl(207,90%,54%)]" };
-    if (isLocked) return { icon: Lock, color: "text-gray-400 bg-gray-600" };
     return { icon: BookOpen, color: "text-white bg-[hsl(240,3.7%,15.9%)]" };
   };
 
   const getStatusText = () => {
     if (isCompleted) return { text: "Completed", color: "text-[hsl(120,100%,50%)]" };
     if (isInProgress) return { text: "In Progress", color: "text-[hsl(207,90%,54%)]" };
-    if (isLocked) return { text: "Locked", color: "text-gray-500" };
     return { text: "Not Started", color: "text-[hsl(215,16%,47%)]" };
   };
 
@@ -142,20 +139,18 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
             </span>
           </div>
           
-          {!isLocked && (
-            <Link href={`/tutorial/${module.id}`}>
-              <Button 
-                size="sm" 
-                className={
-                  isCompleted 
-                    ? "bg-[hsl(120,100%,50%)]/20 text-[hsl(120,100%,50%)] border border-[hsl(120,100%,50%)]/30 hover:bg-[hsl(120,100%,50%)]/30" 
-                    : "bg-[hsl(207,90%,54%)] text-white hover:bg-[hsl(207,90%,64%)]"
-                }
-              >
-                {isCompleted ? "Review" : isInProgress ? "Continue" : "Start"}
-              </Button>
-            </Link>
-          )}
+          <Link href={`/tutorial/${module.id}`}>
+            <Button 
+              size="sm" 
+              className={
+                isCompleted 
+                  ? "bg-[hsl(120,100%,50%)]/20 text-[hsl(120,100%,50%)] border border-[hsl(120,100%,50%)]/30 hover:bg-[hsl(120,100%,50%)]/30" 
+                  : "bg-[hsl(207,90%,54%)] text-white hover:bg-[hsl(207,90%,64%)]"
+              }
+            >
+              {isCompleted ? "Review" : isInProgress ? "Continue" : "Start"}
+            </Button>
+          </Link>
         </div>
       </CardContent>
       
@@ -205,7 +200,7 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
                       ) : isCurrentLesson ? (
                         <Play className="w-3 h-3 text-white" />
                       ) : (
-                        <Lock className="w-3 h-3 text-gray-400" />
+                        <LessonIcon className="w-3 h-3 text-gray-400" />
                       )}
                     </div>
                     <div className="flex-1">

@@ -170,20 +170,17 @@ export default function Tutorial() {
           <h2 className="text-lg font-semibold mb-4">Lessons</h2>
           {module.lessons.map((lesson, index) => {
             const isCompleted = completedLessons.includes(lesson.id);
-            const isLocked = index > 0 && !completedLessons.includes(module.lessons[index - 1].id);
+            const isLocked = false; // All lessons are unlocked
             
             return (
-              <Card key={lesson.id} className={`bg-[hsl(240,6%,10%)] border-[hsl(240,3.7%,15.9%)] ${isLocked ? 'opacity-60' : 'hover:border-[hsl(207,90%,54%)]/30'} transition-colors`}>
+              <Card key={lesson.id} className="bg-[hsl(240,6%,10%)] border-[hsl(240,3.7%,15.9%)] hover:border-[hsl(207,90%,54%)]/30 transition-colors">
                 <CardContent className="p-4">
                   <div className="flex items-center space-x-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      isCompleted ? 'bg-[hsl(120,100%,50%)]' : 
-                      isLocked ? 'bg-gray-600' : 'bg-[hsl(207,90%,54%)]'
+                      isCompleted ? 'bg-[hsl(120,100%,50%)]' : 'bg-[hsl(207,90%,54%)]'
                     }`}>
                       {isCompleted ? (
                         <CheckCircle className="w-4 h-4 text-[hsl(240,10%,6%)]" />
-                      ) : isLocked ? (
-                        <Circle className="w-4 h-4 text-gray-400" />
                       ) : (
                         <BookOpen className="w-4 h-4 text-white" />
                       )}
@@ -201,13 +198,11 @@ export default function Tutorial() {
                         </Badge>
                       </div>
                     </div>
-                    {!isLocked && (
-                      <Link href={`/tutorial/${moduleId}/${lesson.id}`}>
-                        <Button size="sm" variant={isCompleted ? "secondary" : "default"}>
-                          {isCompleted ? "Review" : "Start"}
-                        </Button>
-                      </Link>
-                    )}
+                    <Link href={`/tutorial/${moduleId}/${lesson.id}`}>
+                      <Button size="sm" variant={isCompleted ? "secondary" : "default"}>
+                        {isCompleted ? "Review" : "Start"}
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>

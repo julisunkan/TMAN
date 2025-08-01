@@ -133,16 +133,9 @@ export function useProgress() {
   }, [modules]);
 
   const isModuleUnlocked = useCallback((moduleId: string): boolean => {
-    const module = modules.find(m => m.id === moduleId);
-    if (!module?.prerequisites || module.prerequisites.length === 0) {
-      return true;
-    }
-    
-    const allProgress = getAllProgress();
-    return module.prerequisites.every(prereqId => 
-      allProgress[prereqId]?.completed || false
-    );
-  }, [modules, getAllProgress]);
+    // All modules are always unlocked
+    return true;
+  }, []);
 
   return {
     // Progress queries
