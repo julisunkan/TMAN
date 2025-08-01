@@ -43,10 +43,10 @@ export default function Tutorial() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <MobileHeader />
         <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600"></div>
         </div>
         <BottomNavigation />
       </div>
@@ -55,7 +55,7 @@ export default function Tutorial() {
 
   if (!module) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen">
         <MobileHeader />
         <div className="flex items-center justify-center min-h-[50vh]">
           <p className="text-gray-600">Module not found</p>
@@ -88,40 +88,40 @@ export default function Tutorial() {
   if (!currentLesson) {
     // Show module overview
     return (
-      <div className="min-h-screen bg-[hsl(240,10%,6%)] pb-20">
+      <div className="min-h-screen pb-20">
         <MobileHeader />
         
         {/* Module Header */}
-        <div className="bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] px-4 py-6">
+        <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 px-4 py-8 mx-4 mt-4 rounded-3xl shadow-lg border border-blue-200">
           <div className="flex items-center justify-between mb-4">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="text-[hsl(120,100%,50%)] hover:bg-[hsl(120,100%,50%)]/10">
+              <Button variant="ghost" size="sm" className="text-green-600 hover:bg-green-100 font-medium">
                 <Home className="w-4 h-4 mr-1" />
                 Home
               </Button>
             </Link>
             <Link href="/modules">
-              <Button variant="ghost" size="sm" className="text-[hsl(207,90%,54%)] hover:bg-[hsl(207,90%,54%)]/10">
+              <Button variant="ghost" size="sm" className="text-blue-600 hover:bg-blue-100 font-medium">
                 All Modules
               </Button>
             </Link>
           </div>
           
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="w-12 h-12 bg-[hsl(207,90%,54%)] rounded-lg flex items-center justify-center">
-              <i className={`${module.icon} text-[hsl(240,10%,6%)]`}></i>
+          <div className="flex items-center space-x-4 mb-4">
+            <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <BookOpen className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">{module.title}</h1>
-              <p className="text-sm text-[hsl(215,16%,47%)]">Module • {module.estimatedTime} min</p>
+              <h1 className="text-2xl font-bold text-gray-800">{module.title}</h1>
+              <p className="text-sm text-gray-600 font-medium">Module • {module.estimatedTime} min</p>
             </div>
           </div>
           
-          <p className="text-[hsl(215,16%,47%)] mb-4">{module.description}</p>
+          <p className="text-gray-600 mb-4 text-lg">{module.description}</p>
           
           <div className="flex flex-wrap gap-2 mb-4">
             {module.tags.map(tag => (
-              <Badge key={tag} variant="secondary" className="bg-[hsl(240,10%,6%)]/50">
+              <Badge key={tag} variant="secondary" className="bg-white/80 text-gray-700 border border-gray-300">
                 {tag}
               </Badge>
             ))}
@@ -129,17 +129,17 @@ export default function Tutorial() {
           
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-[hsl(215,16%,47%)]">Progress</span>
-              <span className="text-sm font-medium">{Math.round(moduleProgress)}%</span>
+              <span className="text-sm text-gray-600">Progress</span>
+              <span className="text-sm font-bold text-gray-800">{Math.round(moduleProgress)}%</span>
             </div>
-            <Progress value={moduleProgress} className="h-2" />
+            <Progress value={moduleProgress} className="h-3" />
           </div>
           
           {/* Module Navigation */}
-          <div className="flex justify-between items-center mt-4 pt-4 border-t border-[hsl(240,3.7%,15.9%)]">
+          <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
             {prevModule ? (
               <Link href={`/tutorial/${prevModule.id}`}>
-                <Button variant="outline" size="sm" className="text-xs">
+                <Button variant="outline" size="sm" className="text-xs font-medium border-blue-200 text-blue-600 hover:bg-blue-50">
                   <ChevronLeft className="w-3 h-3 mr-1" />
                   {prevModule.title}
                 </Button>
@@ -148,13 +148,13 @@ export default function Tutorial() {
               <div></div>
             )}
             
-            <Badge variant="secondary" className="bg-[hsl(240,10%,6%)]/50 text-xs">
+            <Badge variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
               Module {currentModuleIndex + 1} of {allModules.length}
             </Badge>
             
             {nextModule ? (
               <Link href={`/tutorial/${nextModule.id}`}>
-                <Button variant="outline" size="sm" className="text-xs">
+                <Button variant="outline" size="sm" className="text-xs font-medium border-blue-200 text-blue-600 hover:bg-blue-50">
                   {nextModule.title}
                   <ChevronRight className="w-3 h-3 ml-1" />
                 </Button>
@@ -166,40 +166,40 @@ export default function Tutorial() {
         </div>
 
         {/* Lessons List */}
-        <div className="px-4 py-6 space-y-3">
-          <h2 className="text-lg font-semibold mb-4">Lessons</h2>
+        <div className="px-4 py-6 space-y-4">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Lessons</h2>
           {module.lessons.map((lesson, index) => {
             const isCompleted = completedLessons.includes(lesson.id);
             const isLocked = false; // All lessons are unlocked
             
             return (
-              <Card key={lesson.id} className="bg-[hsl(240,6%,10%)] border-[hsl(240,3.7%,15.9%)] hover:border-[hsl(207,90%,54%)]/30 transition-colors">
-                <CardContent className="p-4">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      isCompleted ? 'bg-[hsl(120,100%,50%)]' : 'bg-[hsl(207,90%,54%)]'
+              <Card key={lesson.id} className="bg-white border shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02]">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-md ${
+                      isCompleted ? 'bg-green-500' : 'bg-blue-500'
                     }`}>
                       {isCompleted ? (
-                        <CheckCircle className="w-4 h-4 text-[hsl(240,10%,6%)]" />
+                        <CheckCircle className="w-6 h-6 text-white" />
                       ) : (
-                        <BookOpen className="w-4 h-4 text-white" />
+                        <BookOpen className="w-6 h-6 text-white" />
                       )}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-medium">{lesson.title}</h3>
-                      <p className="text-sm text-[hsl(215,16%,47%)] mb-2">{lesson.description}</p>
-                      <div className="flex items-center space-x-4 text-xs text-[hsl(215,16%,47%)]">
-                        <div className="flex items-center space-x-1">
+                      <h3 className="font-bold text-lg text-gray-800">{lesson.title}</h3>
+                      <p className="text-sm text-gray-600 mb-2">{lesson.description}</p>
+                      <div className="flex items-center space-x-4 text-xs">
+                        <div className="flex items-center space-x-1 text-gray-500">
                           <Clock className="w-3 h-3" />
                           <span>{lesson.estimatedTime} min</span>
                         </div>
-                        <Badge variant="outline">
+                        <Badge variant="outline" className="border-gray-300 text-gray-600">
                           {lesson.type}
                         </Badge>
                       </div>
                     </div>
                     <Link href={`/tutorial/${moduleId}/${lesson.id}`}>
-                      <Button size="sm" variant={isCompleted ? "secondary" : "default"}>
+                      <Button size="sm" className={isCompleted ? "bg-green-100 text-green-700 border border-green-300 hover:bg-green-200" : "bg-blue-500 text-white hover:bg-blue-600 shadow-sm"}>
                         {isCompleted ? "Review" : "Start"}
                       </Button>
                     </Link>
@@ -216,32 +216,32 @@ export default function Tutorial() {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(240,10%,6%)] pb-20">
+    <div className="min-h-screen pb-20">
       <MobileHeader />
       
       {/* Lesson Header */}
-      <div className="bg-[hsl(227,39%,23%)] px-4 py-4 border-b border-[hsl(120,100%,50%)]/20">
-        <div className="flex items-center justify-between mb-2">
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-6 mx-4 mt-4 rounded-2xl shadow-lg border border-blue-200">
+        <div className="flex items-center justify-between mb-3">
           <Link href={`/tutorial/${moduleId}`}>
-            <Button variant="ghost" size="sm" className="text-[hsl(120,100%,50%)] hover:bg-[hsl(120,100%,50%)]/10">
+            <Button variant="ghost" size="sm" className="text-green-600 hover:bg-green-100 font-medium">
               <ChevronLeft className="w-4 h-4 mr-1" />
               {module.title}
             </Button>
           </Link>
-          <Badge variant="secondary" className="bg-[hsl(207,90%,54%)]/20 text-[hsl(207,90%,54%)]">
+          <Badge variant="secondary" className="bg-blue-100 text-blue-700 border border-blue-300">
             {currentLessonIndex + 1} of {module.lessons.length}
           </Badge>
         </div>
         
-        <h1 className="text-lg font-semibold mb-1">{currentLesson.title}</h1>
-        <p className="text-sm text-[hsl(215,16%,47%)]">{currentLesson.description}</p>
+        <h1 className="text-xl font-bold mb-2 text-gray-800">{currentLesson.title}</h1>
+        <p className="text-sm text-gray-600">{currentLesson.description}</p>
         
-        <div className="flex items-center space-x-4 mt-3 text-xs text-[hsl(215,16%,47%)]">
-          <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-4 mt-3 text-xs">
+          <div className="flex items-center space-x-1 text-gray-600">
             <Clock className="w-3 h-3" />
             <span>{currentLesson.estimatedTime} min</span>
           </div>
-          <Badge variant="outline">
+          <Badge variant="outline" className="border-gray-300 text-gray-600">
             {currentLesson.type}
           </Badge>
         </div>
@@ -253,18 +253,18 @@ export default function Tutorial() {
       </div>
 
       {/* Navigation */}
-      <div className="sticky bottom-16 bg-[hsl(227,39%,23%)]/95 backdrop-blur-lg border-t border-[hsl(120,100%,50%)]/20 px-4 py-3">
+      <div className="sticky bottom-16 bg-white/95 backdrop-blur-lg border-t border-gray-200 px-4 py-4 mx-4 rounded-t-2xl shadow-lg">
         <div className="flex justify-between items-center">
           {prevLesson ? (
             <Link href={`/tutorial/${moduleId}/${prevLesson.id}`}>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="border-blue-200 text-blue-600 hover:bg-blue-50 font-medium">
                 <ChevronLeft className="w-4 h-4 mr-1" />
                 Previous
               </Button>
             </Link>
           ) : prevModule ? (
             <Link href={`/tutorial/${prevModule.id}`}>
-              <Button variant="outline" size="sm" className="text-xs">
+              <Button variant="outline" size="sm" className="text-xs border-blue-200 text-blue-600 hover:bg-blue-50 font-medium">
                 <ChevronLeft className="w-3 h-3 mr-1" />
                 {prevModule.title}
               </Button>
@@ -275,22 +275,26 @@ export default function Tutorial() {
           
           <Button 
             onClick={handleCompleteLesson}
-            className="bg-[hsl(120,100%,50%)] text-[hsl(240,10%,6%)] hover:bg-[hsl(105,100%,55%)]"
+            className={`${
+              completedLessons.includes(currentLesson.id) 
+                ? "bg-green-500 text-white hover:bg-green-600" 
+                : "bg-green-500 text-white hover:bg-green-600"
+            } font-medium shadow-sm`}
             size="sm"
           >
-            {completedLessons.includes(currentLesson.id) ? "Completed" : "Mark Complete"}
+            {completedLessons.includes(currentLesson.id) ? "Completed ✓" : "Mark Complete"}
           </Button>
           
           {nextLesson ? (
             <Link href={`/tutorial/${moduleId}/${nextLesson.id}`}>
-              <Button size="sm">
+              <Button size="sm" className="bg-blue-500 text-white hover:bg-blue-600 font-medium shadow-sm">
                 Next
                 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
           ) : nextModule ? (
             <Link href={`/tutorial/${nextModule.id}`}>
-              <Button size="sm" className="text-xs">
+              <Button size="sm" className="text-xs bg-blue-500 text-white hover:bg-blue-600 font-medium shadow-sm">
                 {nextModule.title}
                 <ChevronRight className="w-3 h-3 ml-1" />
               </Button>

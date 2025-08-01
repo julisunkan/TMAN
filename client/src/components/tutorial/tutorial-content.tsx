@@ -21,22 +21,22 @@ export default function TutorialContent({ lesson }: TutorialContentProps) {
     switch (section.type) {
       case "text":
         return (
-          <Card key={section.id} className="bg-[hsl(240,6%,10%)] border-[hsl(240,3.7%,15.9%)]">
-            <CardContent className="p-4">
+          <Card key={section.id} className="bg-white border shadow-lg mx-4 mb-4">
+            <CardContent className="p-6">
               {section.title && (
-                <h3 className="text-lg font-semibold mb-3 flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-[hsl(207,90%,54%)]" />
+                <h3 className="text-xl font-bold mb-4 flex items-center space-x-2 text-gray-800">
+                  <FileText className="w-6 h-6 text-blue-600" />
                   <span>{section.title}</span>
                 </h3>
               )}
-              <div className="prose prose-invert prose-sm max-w-none">
+              <div className="prose prose-gray prose-lg max-w-none">
                 {section.content.split('\n').map((paragraph, index) => {
                   if (paragraph.trim() === '') return null;
                   
                   // Handle bullet points
                   if (paragraph.trim().startsWith('•') || paragraph.trim().startsWith('-')) {
                     return (
-                      <ul key={index} className="list-disc list-inside text-[hsl(215,16%,47%)] mb-2">
+                      <ul key={index} className="list-disc list-inside text-gray-700 mb-3">
                         <li>{paragraph.replace(/^[•-]\s*/, '')}</li>
                       </ul>
                     );
@@ -45,14 +45,14 @@ export default function TutorialContent({ lesson }: TutorialContentProps) {
                   // Handle numbered lists
                   if (/^\d+\./.test(paragraph.trim())) {
                     return (
-                      <ol key={index} className="list-decimal list-inside text-[hsl(215,16%,47%)] mb-2">
+                      <ol key={index} className="list-decimal list-inside text-gray-700 mb-3">
                         <li>{paragraph.replace(/^\d+\.\s*/, '')}</li>
                       </ol>
                     );
                   }
                   
                   return (
-                    <p key={index} className="text-[hsl(215,16%,47%)] mb-3 leading-relaxed">
+                    <p key={index} className="text-gray-700 mb-4 leading-relaxed text-base">
                       {paragraph}
                     </p>
                   );
@@ -64,9 +64,9 @@ export default function TutorialContent({ lesson }: TutorialContentProps) {
 
       case "code":
         return (
-          <div key={section.id} className="space-y-2">
+          <div key={section.id} className="mx-4 mb-4 space-y-2">
             {section.title && (
-              <h4 className="text-sm font-medium text-[hsl(207,90%,54%)]">{section.title}</h4>
+              <h4 className="text-lg font-bold text-blue-600">{section.title}</h4>
             )}
             <CodeBlock
               content={section.content}
@@ -79,9 +79,9 @@ export default function TutorialContent({ lesson }: TutorialContentProps) {
 
       case "command":
         return (
-          <div key={section.id} className="space-y-2">
+          <div key={section.id} className="mx-4 mb-4 space-y-2">
             {section.title && (
-              <h4 className="text-sm font-medium text-[hsl(120,100%,50%)]">{section.title}</h4>
+              <h4 className="text-lg font-bold text-green-600">{section.title}</h4>
             )}
             <CodeBlock
               content={section.content}
@@ -94,50 +94,54 @@ export default function TutorialContent({ lesson }: TutorialContentProps) {
 
       case "warning":
         return (
-          <Alert key={section.id} className="border-[hsl(14,100%,60%)]/30 bg-[hsl(14,100%,60%)]/10">
-            <AlertTriangle className="w-4 h-4 text-[hsl(14,100%,60%)]" />
-            <AlertDescription>
-              {section.title && (
-                <div className="font-semibold text-[hsl(14,100%,60%)] mb-2">{section.title}</div>
-              )}
-              <div className="text-[hsl(14,100%,60%)]">{section.content}</div>
-            </AlertDescription>
-          </Alert>
+          <div key={section.id} className="mx-4 mb-4">
+            <Alert className="border-red-300 bg-red-50">
+              <AlertTriangle className="w-4 h-4 text-red-600" />
+              <AlertDescription>
+                {section.title && (
+                  <div className="font-bold text-red-700 mb-2">{section.title}</div>
+                )}
+                <div className="text-red-700">{section.content}</div>
+              </AlertDescription>
+            </Alert>
+          </div>
         );
 
       case "info":
         return (
-          <Alert key={section.id} className="border-[hsl(207,90%,54%)]/30 bg-[hsl(207,90%,54%)]/10">
-            <Info className="w-4 h-4 text-[hsl(207,90%,54%)]" />
-            <AlertDescription>
-              {section.title && (
-                <div className="font-semibold text-[hsl(207,90%,54%)] mb-2">{section.title}</div>
-              )}
-              <div className="text-[hsl(207,90%,54%)]">{section.content}</div>
-            </AlertDescription>
-          </Alert>
+          <div key={section.id} className="mx-4 mb-4">
+            <Alert className="border-blue-300 bg-blue-50">
+              <Info className="w-4 h-4 text-blue-600" />
+              <AlertDescription>
+                {section.title && (
+                  <div className="font-bold text-blue-700 mb-2">{section.title}</div>
+                )}
+                <div className="text-blue-700">{section.content}</div>
+              </AlertDescription>
+            </Alert>
+          </div>
         );
 
       case "checklist":
         return (
-          <Card key={section.id} className="bg-[hsl(240,6%,10%)] border-[hsl(120,100%,50%)]/30">
-            <CardContent className="p-4">
+          <Card key={section.id} className="bg-white border border-green-200 shadow-lg mx-4 mb-4">
+            <CardContent className="p-6">
               {section.title && (
-                <h3 className="text-lg font-semibold mb-3 flex items-center space-x-2">
-                  <CheckCircle className="w-5 h-5 text-[hsl(120,100%,50%)]" />
+                <h3 className="text-xl font-bold mb-4 flex items-center space-x-2 text-gray-800">
+                  <CheckCircle className="w-6 h-6 text-green-600" />
                   <span>{section.title}</span>
                 </h3>
               )}
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {section.content.split('\n').map((item, index) => {
                   if (item.trim() === '') return null;
                   const cleanItem = item.replace(/^[•-]\s*/, '');
                   return (
-                    <div key={index} className="flex items-start space-x-2">
-                      <div className="w-4 h-4 mt-0.5 border border-[hsl(120,100%,50%)]/50 rounded-sm flex items-center justify-center">
-                        <div className="w-2 h-2 bg-[hsl(120,100%,50%)] rounded-sm opacity-0 hover:opacity-100 transition-opacity cursor-pointer" />
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-5 h-5 mt-0.5 border-2 border-green-400 rounded-sm flex items-center justify-center bg-green-50">
+                        <div className="w-2 h-2 bg-green-500 rounded-sm opacity-0 hover:opacity-100 transition-opacity cursor-pointer" />
                       </div>
-                      <span className="text-[hsl(215,16%,47%)] text-sm">{cleanItem}</span>
+                      <span className="text-gray-700 text-base">{cleanItem}</span>
                     </div>
                   );
                 })}
