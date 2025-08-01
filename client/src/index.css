@@ -3,57 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(240, 10%, 6%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --popover: hsl(240, 10%, 6%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 6%, 10%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(240, 3.7%, 15.9%);
-  --accent-foreground: hsl(0, 0%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
+  --background: hsl(0, 0%, 98%);
+  --foreground: hsl(224, 71%, 20%);
+  --muted: hsl(220, 14%, 96%);
+  --muted-foreground: hsl(220, 8%, 46%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(224, 71%, 20%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(224, 71%, 20%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --primary: hsl(221, 83%, 53%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222, 84%, 25%);
+  --accent: hsl(43, 96%, 89%);
+  --accent-foreground: hsl(38, 92%, 50%);
+  --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --ring: hsl(221, 83%, 53%);
   --radius: 0.5rem;
   
-  /* Custom cybersecurity theme colors */
-  --cyber-dark: hsl(240, 10%, 6%);
-  --cyber-navy: hsl(227, 39%, 23%);
-  --cyber-blue: hsl(192, 100%, 50%);
-  --matrix-green: hsl(120, 100%, 50%);
-  --neon-green: hsl(105, 100%, 55%);
-  --warning-orange: hsl(14, 100%, 60%);
-  --gray-custom: hsl(215, 16%, 47%);
+  /* Light theme colors with blue, yellow, red */
+  --bright-blue: hsl(221, 83%, 53%);
+  --light-blue: hsl(213, 93%, 88%);
+  --warning-yellow: hsl(43, 96%, 56%);
+  --light-yellow: hsl(48, 100%, 96%);
+  --danger-red: hsl(0, 84%, 60%);
+  --light-red: hsl(0, 93%, 94%);
+  --neutral-gray: hsl(215, 16%, 47%);
+  --light-gray: hsl(220, 14%, 96%);
 }
 
 .dark {
-  --background: hsl(240, 10%, 6%);
-  --foreground: hsl(0, 0%, 98%);
-  --muted: hsl(240, 3.7%, 15.9%);
-  --muted-foreground: hsl(240, 5%, 64.9%);
-  --popover: hsl(240, 10%, 6%);
-  --popover-foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 6%, 10%);
-  --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
-  --primary: hsl(207, 90%, 54%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(240, 3.7%, 15.9%);
-  --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(240, 3.7%, 15.9%);
-  --accent-foreground: hsl(0, 0%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(240, 4.9%, 83.9%);
+  --background: hsl(224, 71%, 4%);
+  --foreground: hsl(210, 20%, 98%);
+  --muted: hsl(215, 27%, 17%);
+  --muted-foreground: hsl(217, 10%, 64%);
+  --popover: hsl(224, 71%, 4%);
+  --popover-foreground: hsl(210, 20%, 98%);
+  --card: hsl(224, 71%, 4%);
+  --card-foreground: hsl(210, 20%, 98%);
+  --border: hsl(215, 27%, 17%);
+  --input: hsl(215, 27%, 17%);
+  --primary: hsl(221, 83%, 53%);
+  --primary-foreground: hsl(210, 20%, 98%);
+  --secondary: hsl(215, 27%, 17%);
+  --secondary-foreground: hsl(210, 20%, 98%);
+  --accent: hsl(43, 96%, 56%);
+  --accent-foreground: hsl(224, 71%, 4%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 20%, 98%);
+  --ring: hsl(221, 83%, 53%);
 }
 
 @layer base {
@@ -73,7 +74,7 @@
 
 @layer utilities {
   .glow-effect {
-    box-shadow: 0 0 20px hsl(var(--matrix-green));
+    box-shadow: 0 0 20px hsl(var(--bright-blue));
     animation: glow 2s ease-in-out infinite alternate;
   }
 
@@ -90,7 +91,7 @@
   }
 
   .code-block {
-    background: linear-gradient(135deg, hsl(var(--cyber-navy)) 0%, hsl(var(--cyber-dark)) 100%);
+    background: linear-gradient(135deg, hsl(var(--light-blue)) 0%, hsl(var(--light-gray)) 100%);
   }
 
   .progress-ring {
@@ -100,10 +101,10 @@
 
 @keyframes glow {
   from { 
-    box-shadow: 0 0 20px hsl(120, 100%, 50%); 
+    box-shadow: 0 0 20px hsl(221, 83%, 53%); 
   }
   to { 
-    box-shadow: 0 0 30px hsl(120, 100%, 50%), 0 0 40px hsl(120, 100%, 50%); 
+    box-shadow: 0 0 30px hsl(221, 83%, 53%), 0 0 40px hsl(221, 83%, 53%); 
   }
 }
 
@@ -129,14 +130,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--cyber-dark));
+  background: hsl(var(--light-gray));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--cyber-navy));
+  background: hsl(var(--bright-blue));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--matrix-green));
+  background: hsl(var(--warning-yellow));
 }
