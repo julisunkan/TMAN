@@ -2,38 +2,230 @@
   "modules": [
     {
       "id": "lab-setup",
-      "title": "Lab Environment Setup",
-      "description": "Set up VirtualBox, Kali Linux, and Windows environments for ethical hacking practice",
+      "title": "Complete Cybersecurity Lab Environment Setup",
+      "description": "Comprehensive guide to building professional-grade cybersecurity labs with VirtualBox, Kali Linux, Windows, and network simulation tools",
       "category": "intro",
-      "estimatedTime": 45,
+      "estimatedTime": 180,
       "icon": "fas fa-desktop",
-      "tags": ["setup", "virtualization", "kali", "windows"],
+      "tags": ["setup", "virtualization", "kali", "windows", "networking", "lab-building"],
       "lessons": [
         {
-          "id": "virtualbox-setup",
-          "title": "VirtualBox Installation",
-          "description": "Install and configure VirtualBox for virtualization",
-          "type": "hands-on",
-          "estimatedTime": 15,
+          "id": "virtualization-fundamentals",
+          "title": "Virtualization Technology Fundamentals",
+          "description": "Understanding virtualization concepts and architecture for cybersecurity labs",
+          "type": "theory",
+          "estimatedTime": 25,
           "content": [
             {
-              "id": "intro",
+              "id": "virtualization-intro",
               "type": "text",
-              "title": "Introduction",
-              "content": "VirtualBox is a free virtualization platform that allows you to run multiple operating systems on a single machine. This is essential for ethical hacking practice as it provides isolated environments."
+              "title": "What is Virtualization?",
+              "content": "Virtualization is a technology that allows you to create multiple virtual environments from a single physical hardware system. In cybersecurity, virtualization provides isolated testing environments where you can safely practice penetration testing, malware analysis, and incident response without affecting your host system.\n\nKey benefits for cybersecurity professionals:\n• Isolated testing environments\n• Snapshot and rollback capabilities\n• Multiple OS testing scenarios\n• Cost-effective lab infrastructure\n• Safe malware analysis environments"
             },
             {
-              "id": "download",
+              "id": "hypervisor-types",
               "type": "text",
-              "title": "Download VirtualBox",
-              "content": "Visit the official VirtualBox website and download the latest version for your operating system."
+              "title": "Types of Hypervisors",
+              "content": "**Type 1 Hypervisors (Bare Metal):**\n• VMware ESXi\n• Microsoft Hyper-V\n• Citrix XenServer\n• Run directly on physical hardware\n• Better performance and security\n\n**Type 2 Hypervisors (Hosted):**\n• VirtualBox\n• VMware Workstation\n• Parallels Desktop\n• Run on top of existing operating systems\n• Easier to set up for personal labs"
             },
             {
-              "id": "install-cmd",
+              "id": "lab-architecture",
+              "type": "text",
+              "title": "Cybersecurity Lab Architecture Design",
+              "content": "A well-designed cybersecurity lab should include:\n\n**Attacking Systems:**\n• Kali Linux (primary penetration testing)\n• Parrot Security OS (alternative pentesting)\n• BlackArch Linux (specialized tools)\n\n**Target Systems:**\n• Windows 10/11 (modern endpoint)\n• Windows Server 2019/2022\n• Ubuntu/CentOS Linux servers\n• Vulnerable applications (DVWA, WebGoat)\n\n**Network Infrastructure:**\n• pfSense firewall\n• Windows Domain Controller\n• Network monitoring tools\n• IDS/IPS systems"
+            },
+            {
+              "id": "hardware-requirements",
+              "type": "info",
+              "title": "Hardware Requirements for Professional Labs",
+              "content": "**Minimum Requirements:**\n• 8GB RAM (16GB recommended)\n• 500GB available disk space\n• Dual-core processor with virtualization support\n• Intel VT-x or AMD-V technology enabled\n\n**Recommended Configuration:**\n• 32GB+ RAM for multiple VMs\n• 1TB+ SSD storage\n• Quad-core+ processor (i5/i7/Ryzen 5+)\n• Dedicated graphics card (optional)\n\n**Enterprise Setup:**\n• 64GB+ RAM\n• Multiple TB storage (SSD preferred)\n• Server-grade processors\n• 10Gb+ network connectivity"
+            }
+          ]
+        },
+        {
+          "id": "virtualbox-installation",
+          "title": "VirtualBox Installation and Configuration",
+          "description": "Complete VirtualBox setup with advanced configuration for cybersecurity labs",
+          "type": "hands-on",
+          "estimatedTime": 30,
+          "content": [
+            {
+              "id": "virtualbox-overview",
+              "type": "text",
+              "title": "Why VirtualBox for Cybersecurity?",
+              "content": "Oracle VirtualBox is the preferred choice for cybersecurity education because:\n\n• **Free and Open Source**: No licensing costs\n• **Cross-platform**: Runs on Windows, macOS, Linux\n• **Extensive VM support**: Supports most operating systems\n• **Snapshot functionality**: Save and restore VM states\n• **Network simulation**: Create complex network topologies\n• **API access**: Automation and scripting capabilities\n• **Active community**: Large user base and documentation"
+            },
+            {
+              "id": "download-installation",
+              "type": "text",
+              "title": "Download and Installation Process",
+              "content": "**Step 1: Download VirtualBox**\nVisit: https://www.virtualbox.org/wiki/Downloads\n\n**For Windows:**\n• Download VirtualBox-x.x.x-Win.exe\n• Download Extension Pack (adds USB 3.0, RDP, encryption)\n\n**For macOS:**\n• Download VirtualBox-x.x.x-OSX.dmg\n• May require disabling System Integrity Protection\n\n**For Linux:**\n• Use package manager or download .deb/.rpm\n• Add Oracle repository for latest versions"
+            },
+            {
+              "id": "linux-installation",
               "type": "command",
-              "title": "Installation Command (Linux)",
-              "content": "sudo apt update && sudo apt install virtualbox virtualbox-ext-pack",
+              "title": "Linux Installation Commands",
+              "content": "# Ubuntu/Debian\nwget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -\necho \"deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib\" | sudo tee /etc/apt/sources.list.d/virtualbox.list\nsudo apt update\nsudo apt install virtualbox-7.0 virtualbox-ext-pack",
               "copyable": true
+            },
+            {
+              "id": "windows-installation",
+              "type": "text",
+              "title": "Windows Installation Steps",
+              "content": "**Installation Process:**\n1. Run VirtualBox installer as Administrator\n2. Accept license agreement\n3. Choose installation directory\n4. Select components (all recommended)\n5. Install Oracle network drivers when prompted\n6. Complete installation and restart if required\n\n**Post-Installation:**\n1. Install Extension Pack for enhanced features\n2. Configure global settings\n3. Set default machine folder location\n4. Enable hardware virtualization in BIOS/UEFI"
+            },
+            {
+              "id": "bios-virtualization",
+              "type": "warning",
+              "title": "Enabling Hardware Virtualization",
+              "content": "**IMPORTANT**: Hardware virtualization must be enabled in BIOS/UEFI:\n\n**Intel Systems:**\n• Look for 'Intel VT-x' or 'Virtualization Technology'\n• Usually found in 'Advanced' or 'Security' settings\n\n**AMD Systems:**\n• Look for 'AMD-V' or 'SVM Mode'\n• Enable in 'Advanced CPU Features'\n\n**Access BIOS/UEFI:**\n• Restart computer\n• Press F2, F12, Del, or Esc during boot\n• Navigate to virtualization settings\n• Enable and save changes"
+            },
+            {
+              "id": "virtualbox-configuration",
+              "type": "text",
+              "title": "Initial VirtualBox Configuration",
+              "content": "**Global Settings Configuration:**\n\n1. **Default Machine Folder**: Set to dedicated drive with sufficient space\n2. **Host Key**: Configure host key combination (default: Right Ctrl)\n3. **Update Settings**: Enable automatic update checks\n4. **Language**: Set preferred interface language\n\n**Network Configuration:**\n1. Create Host-Only networks for isolated lab environments\n2. Configure NAT networks for internet access\n3. Set up Internal networks for VM-to-VM communication\n\n**Storage Configuration:**\n1. Create dedicated folders for VM files\n2. Consider SSD storage for better performance\n3. Plan storage allocation for multiple VMs"
+            }
+          ]
+        },
+        {
+          "id": "kali-linux-setup",
+          "title": "Kali Linux Virtual Machine Setup",
+          "description": "Complete Kali Linux installation and configuration for penetration testing",
+          "type": "hands-on",
+          "estimatedTime": 45,
+          "content": [
+            {
+              "id": "kali-overview",
+              "type": "text",
+              "title": "Kali Linux: The Penetration Testing Distribution",
+              "content": "Kali Linux is a Debian-based Linux distribution specifically designed for digital forensics and penetration testing. Maintained by Offensive Security, it includes 600+ pre-installed security tools.\n\n**Key Features:**\n• 600+ penetration testing tools\n• Regular security updates\n• Multi-platform support (x86, x64, ARM)\n• Live boot capability\n• Forensics mode\n• Custom kernel with wireless injection patches\n• Complete tool documentation"
+            },
+            {
+              "id": "kali-download",
+              "type": "text",
+              "title": "Downloading Kali Linux",
+              "content": "**Download Options:**\n\n**Pre-built VirtualBox Image (Recommended):**\n• Visit: https://www.kali.org/get-kali/#kali-virtual-machines\n• Download Kali Linux VirtualBox 64-bit (OVA)\n• Size: ~3.5GB compressed\n• Username: kali, Password: kali\n\n**ISO Image for Custom Installation:**\n• Download Kali Linux 64-bit ISO\n• Size: ~4GB\n• Allows custom partitioning and configuration\n\n**Verification:**\nAlways verify SHA256 checksums to ensure integrity:\n```bash\nsha256sum kali-linux-2024.1-virtualbox-amd64.ova\n```"
+            },
+            {
+              "id": "ova-import",
+              "type": "text",
+              "title": "Importing Kali Linux OVA",
+              "content": "**Import Process:**\n\n1. **Open VirtualBox Manager**\n2. **File → Import Appliance**\n3. **Select Kali OVA file**\n4. **Review appliance settings:**\n   • Name: Kali-Linux-2024\n   • RAM: 2048MB (increase to 4GB if available)\n   • CPU: 2 cores\n   • Storage: 80GB dynamically allocated\n\n5. **Modify settings as needed:**\n   • Increase RAM for better performance\n   • Enable 3D acceleration\n   • Configure network adapters\n\n6. **Import and wait for completion**"
+            },
+            {
+              "id": "vm-optimization",
+              "type": "text",
+              "title": "Kali VM Performance Optimization",
+              "content": "**System Settings:**\n\n**Processor Configuration:**\n• CPU cores: 2-4 (based on host system)\n• Enable PAE/NX\n• Hardware virtualization: VT-x/AMD-V\n• Nested paging enabled\n\n**Memory Settings:**\n• Base memory: 4GB minimum (8GB recommended)\n• Video memory: 128MB\n• Enable 3D acceleration\n\n**Storage Optimization:**\n• SSD storage preferred\n• Enable AHCI controller\n• Consider fixed-size disks for better performance\n\n**Network Configuration:**\n• Adapter 1: NAT (internet access)\n• Adapter 2: Host-only (lab network)\n• Enable promiscuous mode for packet capture"
+            },
+            {
+              "id": "first-boot",
+              "type": "text",
+              "title": "First Boot and Initial Configuration",
+              "content": "**Initial Login:**\n• Username: kali\n• Password: kali\n\n**Essential First Steps:**\n\n1. **Update System:**\n```bash\nsudo apt update && sudo apt full-upgrade -y\n```\n\n2. **Install Guest Additions:**\n```bash\nsudo apt install virtualbox-guest-x11\n```\n\n3. **Configure Display:**\n• Enable auto-resize guest display\n• Set optimal resolution\n\n4. **Network Verification:**\n```bash\nip addr show\nping -c 4 google.com\n```"
+            },
+            {
+              "id": "kali-tools-overview",
+              "type": "text",
+              "title": "Essential Kali Linux Tools Categories",
+              "content": "**Information Gathering:**\n• Nmap - Network discovery and security auditing\n• Recon-ng - Web reconnaissance framework\n• theHarvester - Email, subdomain and people names harvester\n• Maltego - OSINT and forensics application\n\n**Vulnerability Analysis:**\n• OpenVAS - Vulnerability scanner\n• Nikto - Web server scanner\n• SQLmap - SQL injection and database takeover tool\n\n**Web Application Analysis:**\n• Burp Suite - Web security testing platform\n• OWASP ZAP - Web application security scanner\n• Gobuster - Directory and file brute-forcer\n\n**Database Assessment:**\n• SQLmap - Automatic SQL injection tool\n• NoSQLMap - NoSQL injection testing tool\n\n**Password Attacks:**\n• Hydra - Network logon cracker\n• John the Ripper - Password cracker\n• Hashcat - Advanced password recovery\n• Crunch - Wordlist generator"
+            },
+            {
+              "id": "kali-customization",
+              "type": "text",
+              "title": "Customizing Kali Linux Environment",
+              "content": "**Desktop Environment:**\n• Default: XFCE (lightweight)\n• Alternative: GNOME, KDE, i3wm\n• Customize panels, themes, shortcuts\n\n**Shell Configuration:**\n• Default shell: Bash\n• Alternative: Zsh with Oh My Zsh\n• Configure aliases for common commands\n\n**Tool Installation:**\n```bash\n# Additional tools\nsudo apt install gobuster feroxbuster\nsudo apt install bloodhound neo4j\nsudo apt install responder crackmapexec\n```\n\n**Workspace Setup:**\n• Create project directories\n• Configure note-taking tools (CherryTree, Obsidian)\n• Set up screenshot utilities\n• Install additional browsers (Firefox ESR included)"
+            }
+          ]
+        },
+        {
+          "id": "windows-target-setup",
+          "title": "Windows Target Environment Setup",
+          "description": "Creating realistic Windows target environments for penetration testing practice",
+          "type": "hands-on",
+          "estimatedTime": 40,
+          "content": [
+            {
+              "id": "windows-versions",
+              "type": "text",
+              "title": "Windows Versions for Testing",
+              "content": "**Modern Windows Environments:**\n\n**Windows 11 Enterprise:**\n• Latest security features\n• Windows Defender improvements\n• Microsoft Defender for Endpoint\n• BitLocker encryption\n• Secure Boot\n\n**Windows 10 Enterprise:**\n• Widely deployed in organizations\n• Multiple update versions available\n• LAPS (Local Administrator Password Solution)\n• Windows Hello authentication\n\n**Windows Server 2022:**\n• Latest server operating system\n• Active Directory Domain Services\n• DNS, DHCP, File Services\n• Hyper-V virtualization\n\n**Legacy Systems (for specific testing):**\n• Windows 7 SP1 (end-of-life testing)\n• Windows Server 2012 R2\n• Windows XP (malware analysis sandbox)"
+            },
+            {
+              "id": "windows-iso-sources",
+              "type": "text",
+              "title": "Obtaining Windows ISOs Legally",
+              "content": "**Microsoft Evaluation Center:**\n• 180-day evaluation versions\n• Windows Server 2022\n• Windows 11 Enterprise\n• No product key required initially\n\n**Visual Studio Subscriptions:**\n• Full Windows versions\n• Development and testing rights\n• Multiple language packs\n\n**Windows Insider Program:**\n• Preview builds\n• Latest features\n• Beta testing environment\n\n**Educational Licenses:**\n• Microsoft Imagine (formerly DreamSpark)\n• Academic institutions\n• Student developer accounts\n\n**Volume Licensing:**\n• Enterprise customers\n• Multiple activation methods\n• Centralized management"
+            },
+            {
+              "id": "windows-vm-creation",
+              "type": "text",
+              "title": "Creating Windows Virtual Machines",
+              "content": "**VM Configuration:**\n\n**System Settings:**\n• RAM: 4GB minimum (8GB recommended)\n• CPU: 2 cores minimum\n• Storage: 80GB minimum (120GB recommended)\n• Graphics: 128MB video memory\n• Audio: Enable for complete testing\n\n**Installation Process:**\n1. Create new VM in VirtualBox\n2. Select Windows version\n3. Allocate resources\n4. Create virtual hard disk\n5. Mount Windows ISO\n6. Start installation\n\n**Network Configuration:**\n• NAT for internet access\n• Internal network for isolated lab\n• Host-only for host communication\n• Promiscuous mode for traffic capture"
+            },
+            {
+              "id": "windows-configuration",
+              "type": "text",
+              "title": "Post-Installation Windows Configuration",
+              "content": "**Security Configuration for Testing:**\n\n**Disable Windows Defender (for testing):**\n• Real-time protection\n• Cloud-delivered protection\n• Automatic sample submission\n• Controlled folder access\n\n**User Account Setup:**\n• Create administrative user\n• Create standard user accounts\n• Configure password policies\n• Enable guest account (if needed)\n\n**Network Services:**\n• Enable file sharing\n• Configure print services\n• Install IIS web server\n• Enable RDP (Remote Desktop)\n\n**Vulnerable Configurations:**\n• Outdated software versions\n• Weak password policies\n• Unnecessary services enabled\n• Default configurations"
+            },
+            {
+              "id": "windows-software",
+              "type": "text",
+              "title": "Installing Target Software",
+              "content": "**Common Business Applications:**\n\n**Office Suite:**\n• Microsoft Office 2019/365\n• Adobe Acrobat Reader\n• Web browsers (Chrome, Firefox, Edge)\n\n**Development Tools:**\n• Visual Studio Code\n• Git for Windows\n• Python, Node.js\n• Database clients (MySQL Workbench)\n\n**Server Software:**\n• IIS Web Server\n• SQL Server Express\n• FileZilla Server\n• Apache Tomcat\n\n**Vulnerable Applications:**\n• DVWA (Damn Vulnerable Web Application)\n• BadBlue web server\n• Vulnerable services for exploitation practice\n\n**Monitoring Tools:**\n• Sysmon for event logging\n• Process Monitor\n• Wireshark for packet analysis"
+            },
+            {
+              "id": "domain-controller",
+              "type": "text",
+              "title": "Windows Domain Controller Setup",
+              "content": "**Active Directory Installation:**\n\n**Prerequisites:**\n• Windows Server 2019/2022\n• Static IP configuration\n• DNS properly configured\n• Administrator privileges\n\n**Installation Steps:**\n1. Install AD DS role\n2. Promote to domain controller\n3. Create new forest\n4. Configure domain name (e.g., lab.local)\n5. Set DSRM password\n6. Install DNS automatically\n\n**Post-Configuration:**\n• Create organizational units\n• Add user accounts\n• Configure group policies\n• Set up file shares\n• Install certificate services\n\n**Domain Users Creation:**\n• Administrative accounts\n• Service accounts\n• Standard user accounts\n• Privileged access accounts"
+            }
+          ]
+        },
+        {
+          "id": "network-configuration",
+          "title": "Advanced Network Configuration",
+          "description": "Setting up complex network topologies and traffic analysis environments",
+          "type": "hands-on",
+          "estimatedTime": 40,
+          "content": [
+            {
+              "id": "network-types",
+              "type": "text",
+              "title": "VirtualBox Network Types",
+              "content": "**NAT (Network Address Translation):**\n• VMs can access internet\n• Host cannot reach VMs directly\n• VMs cannot communicate with each other\n• Default configuration\n• Port forwarding for services\n\n**NAT Network:**\n• Multiple VMs share NAT service\n• VMs can communicate with each other\n• Internet access available\n• Isolated from host network\n\n**Bridged Adapter:**\n• VM appears as separate device on network\n• Direct access to local network\n• Can receive DHCP from router\n• Full network visibility\n\n**Host-Only Network:**\n• Communication between host and VMs\n• No internet access by default\n• Isolated network segment\n• Perfect for lab environments\n\n**Internal Network:**\n• VM-to-VM communication only\n• Completely isolated\n• No host or internet access\n• Ideal for malware analysis"
+            },
+            {
+              "id": "lab-topology",
+              "type": "text",
+              "title": "Cybersecurity Lab Network Topology",
+              "content": "**Recommended Lab Architecture:**\n\n**Management Network (Host-Only):**\n• Kali Linux attacker VM\n• Network monitoring station\n• Log collection server\n• Subnet: 192.168.100.0/24\n\n**Target Network (Internal):**\n• Windows domain controller\n• Windows client systems\n• Linux servers\n• Vulnerable applications\n• Subnet: 10.0.0.0/24\n\n**DMZ Network (Internal):**\n• Web servers\n• Email servers\n• FTP servers\n• Public-facing services\n• Subnet: 172.16.0.0/24\n\n**Internet Simulation (NAT):**\n• Simulated internet services\n• External reconnaissance targets\n• Cloud service simulation"
+            },
+            {
+              "id": "pfsense-setup",
+              "type": "text",
+              "title": "pfSense Firewall Configuration",
+              "content": "**pfSense Overview:**\nOpen-source firewall and router platform based on FreeBSD. Provides enterprise-level features for network security testing.\n\n**Download and Installation:**\n• Visit: https://www.pfsense.org/download/\n• Download CE (Community Edition) ISO\n• Create VM with 1GB RAM, 20GB storage\n• Configure multiple network adapters\n\n**Network Interface Configuration:**\n• WAN interface: NAT or Bridged\n• LAN interface: Internal network\n• DMZ interface: Separate internal network\n• OPT interfaces: Additional segments\n\n**Basic Configuration:**\n1. Complete initial setup wizard\n2. Configure LAN IP address\n3. Set admin password\n4. Enable DHCP server\n5. Configure firewall rules\n\n**Advanced Features:**\n• VPN server (OpenVPN, IPSec)\n• Intrusion detection (Suricata, Snort)\n• Traffic shaping\n• Captive portal\n• Package management"
+            },
+            {
+              "id": "traffic-capture",
+              "type": "text",
+              "title": "Network Traffic Capture Setup",
+              "content": "**Packet Capture Strategies:**\n\n**Mirror Ports:**\n• Configure virtual switch mirroring\n• Copy all traffic to monitoring VM\n• Requires network virtualization features\n\n**Promiscuous Mode:**\n• Enable on network adapters\n• Allows packet capture from VMs\n• Monitor all network segment traffic\n\n**TAP Interfaces:**\n• Create virtual network taps\n• Insert between network segments\n• Passive monitoring approach\n\n**SPAN Configuration:**\n• Virtual switched port analyzer\n• Mirror traffic to analysis system\n• Enterprise network simulation\n\n**Monitoring Tools:**\n• Wireshark for packet analysis\n• tcpdump for command-line capture\n• ntopng for traffic monitoring\n• Security Onion for enterprise monitoring"
+            },
+            {
+              "id": "network-services",
+              "type": "text",
+              "title": "Essential Network Services",
+              "content": "**DNS Services:**\n• Windows DNS server\n• BIND9 on Linux\n• Local domain resolution\n• DNS poisoning testing\n• Zone transfer testing\n\n**DHCP Services:**\n• Automatic IP assignment\n• Scope configuration\n• Reservation testing\n• DHCP starvation attacks\n\n**Web Services:**\n• IIS on Windows\n• Apache/Nginx on Linux\n• HTTPS certificate configuration\n• Virtual host setup\n\n**Database Services:**\n• Microsoft SQL Server\n• MySQL/MariaDB\n• PostgreSQL\n• NoSQL databases (MongoDB)\n\n**File Services:**\n• SMB/CIFS shares\n• FTP servers\n• NFS exports\n• SSH/SFTP access\n\n**Email Services:**\n• Exchange Server\n• Postfix/Dovecot\n• SMTP relay configuration\n• POP3/IMAP services"
+            },
+            {
+              "id": "monitoring-setup",
+              "type": "text",
+              "title": "Security Monitoring Infrastructure",
+              "content": "**SIEM Solutions:**\n\n**Splunk Free:**\n• 500MB daily indexing limit\n• Comprehensive log analysis\n• Custom dashboards\n• Correlation rules\n\n**ELK Stack (Elasticsearch, Logstash, Kibana):**\n• Open-source log management\n• Real-time analytics\n• Custom visualizations\n• Machine learning capabilities\n\n**Security Onion:**\n• Complete security monitoring platform\n• Intrusion detection\n• Network security monitoring\n• Threat hunting capabilities\n\n**Log Sources:**\n• Windows Event Logs\n• Syslog from Linux systems\n• Firewall logs\n• Web server access logs\n• Database audit logs\n• Network device logs\n\n**Monitoring Objectives:**\n• Detect attack patterns\n• Monitor user behavior\n• Track system changes\n• Identify data exfiltration\n• Analyze malware communication"
             }
           ]
         }
@@ -764,64 +956,151 @@
     },
     {
       "id": "advanced-sniffing-tools",
-      "title": "Advanced Network Sniffing Tools",
-      "description": "Comprehensive guide to Windows-based network analysis and sniffing tools",
+      "title": "Advanced Network Sniffing and Analysis Tools",
+      "description": "Comprehensive mastery of professional network analysis tools including Wireshark, tcpdump, and specialized Windows sniffing utilities",
       "category": "tools",
-      "estimatedTime": 45,
+      "estimatedTime": 120,
       "icon": "fas fa-search",
-      "tags": ["wireshark", "sniffing", "network-analysis", "windows", "tools"],
+      "tags": ["wireshark", "sniffing", "network-analysis", "windows", "tools", "packet-analysis"],
       "lessons": [
         {
           "id": "wireshark-fundamentals",
-          "title": "Wireshark Network Protocol Analyzer",
-          "description": "Master the world's foremost network protocol analyzer",
+          "title": "Wireshark Master Class: Professional Network Analysis",
+          "description": "Complete mastery of Wireshark for advanced network protocol analysis and forensics",
           "type": "hands-on",
-          "estimatedTime": 20,
+          "estimatedTime": 45,
           "content": [
             {
               "id": "wireshark-intro",
               "type": "text",
-              "title": "What is Wireshark?",
-              "content": "Wireshark is the world's foremost and widely-used network protocol analyzer. It lets you see what's happening on your network at a microscopic level and is the de facto standard across many commercial and non-profit enterprises, government agencies, and educational institutions."
+              "title": "Wireshark: The Network Detective's Primary Tool",
+              "content": "Wireshark is the world's foremost network protocol analyzer, used by network professionals, security experts, developers, and educators worldwide. Originally known as Ethereal, Wireshark can capture and interactively browse the traffic running on a computer network.\n\n**Why Wireshark is Essential:**\n• **Deep Protocol Analysis**: Supports 3000+ protocols\n• **Real-time Capture**: Live network monitoring\n• **Forensic Capabilities**: Post-incident analysis\n• **Cross-platform**: Windows, macOS, Linux, Unix\n• **Educational Value**: Understand network communications\n• **Troubleshooting**: Network performance issues\n• **Security Analysis**: Detect malicious traffic\n\n**Professional Applications:**\n• Network troubleshooting\n• Malware traffic analysis\n• Protocol development\n• Network security auditing\n• Educational demonstrations\n• Digital forensics investigations"
             },
             {
-              "id": "wireshark-download",
+              "id": "installation-setup",
               "type": "text",
-              "title": "Installation",
-              "content": "Download Wireshark from the official website: https://www.wireshark.org/\n\nWireshark is available for Windows, macOS, and Linux platforms."
+              "title": "Professional Installation and Setup",
+              "content": "**Download Sources:**\n• Official Website: https://www.wireshark.org/download.html\n• Package Managers: apt, yum, brew, chocolatey\n• Source Code: GitHub repository\n\n**System Requirements:**\n• Windows 10/11 (64-bit recommended)\n• macOS 10.14 or later\n• Linux kernel 2.6.32 or later\n• 512MB RAM minimum (2GB+ recommended)\n• Network adapter with packet capture support\n\n**Windows Installation:**\n1. Download 64-bit installer\n2. Run as Administrator\n3. Install WinPcap/Npcap for packet capture\n4. Configure firewall exceptions\n5. Install USBPcap for USB traffic analysis\n\n**Linux Installation:**\n```bash\n# Ubuntu/Debian\nsudo apt update\nsudo apt install wireshark\nsudo usermod -a -G wireshark $USER\n\n# CentOS/RHEL\nsudo yum install wireshark\nsudo setcap cap_net_raw,cap_net_admin+eip /usr/bin/dumpcap\n```"
             },
             {
-              "id": "capture-basics",
+              "id": "interface-overview",
               "type": "text",
-              "title": "Basic Packet Capture",
-              "content": "Wireshark allows you to:\n• Capture live network traffic\n• Analyze protocol details\n• Filter specific traffic patterns\n• Export capture data for analysis\n• Decode encrypted protocols"
+              "title": "Wireshark Interface Deep Dive",
+              "content": "**Main Interface Components:**\n\n**1. Menu Bar:**\n• File: Open/Save captures, export data\n• Edit: Find packets, preferences\n• View: Customize interface layout\n• Go: Navigate through packets\n• Capture: Start/stop packet capture\n• Analyze: Protocol analysis tools\n• Statistics: Traffic statistics and graphs\n• Telephony: VoIP analysis tools\n• Tools: Various analysis utilities\n• Help: Documentation and about\n\n**2. Main Toolbar:**\n• Start/Stop capture buttons\n• Open/Save file shortcuts\n• Find packet search\n• Go to packet navigation\n• Colorize packets toggle\n• Auto-scroll toggle\n• Zoom controls\n\n**3. Filter Toolbar:**\n• Display filter expression bar\n• Filter buttons for common filters\n• Expression builder button\n• Clear filter button\n• Apply/Clear buttons\n\n**4. Packet List Pane:**\n• Shows captured packets chronologically\n• Columns: No., Time, Source, Destination, Protocol, Length, Info\n• Color coding for different protocols\n• Right-click context menu\n\n**5. Packet Details Pane:**\n• Hierarchical protocol breakdown\n• Expandable protocol layers\n• Field descriptions and values\n• Cross-references to RFCs\n\n**6. Packet Bytes Pane:**\n• Raw packet data in hex and ASCII\n• Highlights selected fields\n• Allows binary analysis\n• Copy raw data functionality"
+            },
+            {
+              "id": "capture-configuration",
+              "type": "text",
+              "title": "Advanced Capture Configuration",
+              "content": "**Interface Selection:**\n\n**Ethernet Interfaces:**\n• Physical network adapters\n• Virtual machine interfaces\n• USB-to-Ethernet adapters\n• Monitor promiscuous mode\n\n**Wireless Interfaces:**\n• WiFi adapters in monitor mode\n• Requires special drivers\n• Can capture all wireless traffic\n• Useful for wireless security testing\n\n**Virtual Interfaces:**\n• Loopback (localhost traffic)\n• Virtual network adapters\n• VPN interfaces\n• Tunnel interfaces\n\n**Capture Options:**\n\n**Buffer Settings:**\n• Buffer size: 1MB to 1GB\n• Ring buffer mode for continuous capture\n• Multiple files with size/time limits\n• Stop conditions (packets, filesize, duration)\n\n**Capture Filters:**\n• Applied during capture (not display)\n• Based on BPF (Berkeley Packet Filter)\n• Reduces capture file size\n• Examples:\n  - `host 192.168.1.1` (specific host)\n  - `port 80 or port 443` (web traffic)\n  - `tcp and port 22` (SSH traffic)\n  - `not broadcast and not multicast` (unicast only)\n\n**Promiscuous Mode:**\n• Captures all packets on network segment\n• Requires administrative privileges\n• Switch port mirroring for best results\n• Ethical and legal considerations"
+            },
+            {
+              "id": "display-filters",
+              "type": "text",
+              "title": "Master Class: Display Filters",
+              "content": "**Display Filter Syntax:**\n\nDisplay filters use a rich expression syntax to show only packets of interest:\n\n**Protocol Filters:**\n• `tcp` - All TCP packets\n• `udp` - All UDP packets\n• `icmp` - All ICMP packets\n• `http` - All HTTP traffic\n• `dns` - All DNS queries/responses\n• `ssl` or `tls` - All SSL/TLS traffic\n\n**Address Filters:**\n• `ip.addr == 192.168.1.1` - Packets to/from IP\n• `ip.src == 10.0.0.1` - Packets from source\n• `ip.dst == 172.16.0.1` - Packets to destination\n• `eth.addr == 00:11:22:33:44:55` - MAC address\n\n**Port Filters:**\n• `tcp.port == 80` - TCP port 80 traffic\n• `udp.port == 53` - UDP port 53 (DNS)\n• `tcp.srcport == 443` - TCP source port 443\n• `tcp.dstport == 22` - TCP destination port 22\n\n**Logical Operators:**\n• `and` or `&&` - Both conditions true\n• `or` or `||` - Either condition true\n• `not` or `!` - Condition false\n• `()` - Grouping expressions\n\n**Advanced Filters:**\n• `tcp.flags.syn == 1` - TCP SYN packets\n• `http.request.method == \"GET\"` - HTTP GET requests\n• `dns.qry.name contains \"google\"` - DNS queries with \"google\"\n• `tcp.stream eq 0` - First TCP stream\n• `frame.time >= \"2024-01-01 00:00:00\"` - Time-based filter\n\n**Performance Tips:**\n• Use specific filters to reduce processing\n• Combine filters efficiently\n• Save common filters as buttons\n• Use macros for complex expressions"
+            },
+            {
+              "id": "protocol-analysis",
+              "type": "text",
+              "title": "Advanced Protocol Analysis Techniques",
+              "content": "**HTTP/HTTPS Analysis:**\n\n**HTTP Traffic Analysis:**\n• Request methods (GET, POST, PUT, DELETE)\n• Response codes (200, 404, 500)\n• Headers analysis (User-Agent, Referer)\n• Content-Type identification\n• Cookie tracking\n• Form data extraction\n\n**HTTPS/TLS Analysis:**\n• Certificate examination\n• Cipher suite analysis\n• TLS version identification\n• Certificate chain validation\n• SSL/TLS handshake analysis\n• Perfect Forward Secrecy verification\n\n**DNS Analysis:**\n\n**Query Types:**\n• A records (IPv4 addresses)\n• AAAA records (IPv6 addresses)\n• MX records (mail servers)\n• CNAME records (aliases)\n• TXT records (text data)\n• PTR records (reverse DNS)\n\n**DNS Security:**\n• DNSSEC validation\n• DNS cache poisoning detection\n• DNS tunneling identification\n• Malicious domain detection\n• DNS over HTTPS (DoH) analysis\n\n**TCP Stream Analysis:**\n\n**Connection Analysis:**\n• Three-way handshake examination\n• Connection state tracking\n• Window size analysis\n• Sequence number tracking\n• Retransmission detection\n• Connection termination analysis\n\n**Performance Metrics:**\n• Round-trip time calculation\n• Throughput measurement\n• Packet loss detection\n• Congestion window analysis\n• Bandwidth utilization\n• Quality of Service (QoS) metrics"
+            },
+            {
+              "id": "security-analysis",
+              "type": "text",
+              "title": "Network Security Analysis with Wireshark",
+              "content": "**Malware Traffic Analysis:**\n\n**Behavioral Indicators:**\n• Unusual DNS queries\n• Suspicious HTTP requests\n• Encrypted C2 communications\n• Data exfiltration patterns\n• Periodic beacon traffic\n• Non-standard port usage\n\n**Analysis Workflow:**\n1. Baseline normal traffic\n2. Identify anomalous patterns\n3. Isolate suspicious communications\n4. Extract IOCs (Indicators of Compromise)\n5. Document findings\n6. Create detection rules\n\n**Attack Pattern Recognition:**\n\n**Network Scanning:**\n• Port scan detection\n• Host discovery patterns\n• Service enumeration\n• Vulnerability scanning signatures\n\n**Exploitation Attempts:**\n• SQL injection in HTTP traffic\n• Cross-site scripting (XSS)\n• Buffer overflow attempts\n• Protocol exploitation\n\n**Post-Exploitation Activity:**\n• Lateral movement traffic\n• Privilege escalation attempts\n• Data staging and exfiltration\n• Persistence mechanisms\n• Command and control communications\n\n**Forensic Analysis:**\n\n**Evidence Collection:**\n• Maintain chain of custody\n• Hash capture files\n• Document analysis methodology\n• Preserve original evidence\n• Create working copies\n\n**Timeline Analysis:**\n• Correlate network events\n• Establish attack timeline\n• Identify attack vectors\n• Map attacker progression\n• Document impact assessment"
+            },
+            {
+              "id": "advanced-features",
+              "type": "text",
+              "title": "Expert-Level Wireshark Features",
+              "content": "**Statistics and Analysis:**\n\n**Protocol Hierarchy:**\n• View protocol distribution\n• Identify bandwidth usage\n• Detect unusual protocols\n• Performance analysis\n\n**IO Graphs:**\n• Visualize traffic patterns\n• Time-series analysis\n• Compare multiple metrics\n• Identify traffic spikes\n• Bandwidth utilization graphs\n\n**Flow Analysis:**\n• TCP flow graphs\n• Round-trip time analysis\n• Throughput calculations\n• Window scaling analysis\n\n**Expert System:**\n• Automatic problem detection\n• TCP errors and warnings\n• Performance issues\n• Security concerns\n• Protocol violations\n\n**Customization:**\n\n**Custom Columns:**\n• Add custom packet list columns\n• Display specific protocol fields\n• Create calculated fields\n• Custom time formats\n\n**Color Rules:**\n• Highlight specific traffic\n• Visual pattern recognition\n• Custom color schemes\n• Protocol-based coloring\n\n**Profiles:**\n• Save configuration sets\n• Switch between contexts\n• Team standardization\n• Environment-specific settings\n\n**Lua Scripting:**\n• Custom protocol dissectors\n• Automated analysis scripts\n• Custom statistics\n• Integration with other tools\n\n**Tshark Command Line:**\n• Automated packet capture\n• Batch processing\n• Scripted analysis\n• Integration with other tools\n• Command-line filtering"
             }
           ]
         },
         {
-          "id": "cain-abel-tool",
-          "title": "Cain & Abel Password Recovery",
-          "description": "Learn password decryption and decoding techniques",
+          "id": "windows-packet-capture",
+          "title": "Windows Native Packet Capture Tools",
+          "description": "Master Windows built-in and third-party packet capture utilities",
           "type": "hands-on",
-          "estimatedTime": 15,
+          "estimatedTime": 30,
           "content": [
             {
-              "id": "cain-abel-intro",
+              "id": "netsh-trace",
               "type": "text",
-              "title": "Cain & Abel Overview",
-              "content": "Cain & Abel is a security tool for decryption and decoding of passwords for offline programs and network services. It features powerful decoding algorithms and extensive decrypting tools."
+              "title": "Windows Netsh Trace: Built-in Packet Capture",
+              "content": "Windows includes built-in packet capture capabilities through the netsh trace command, providing ETW (Event Tracing for Windows) based network monitoring.\n\n**Netsh Trace Advantages:**\n• No additional software required\n• Integrated with Windows\n• ETW-based high performance\n• Kernel-level capture\n• Built-in filtering capabilities\n• Support for multiple providers\n\n**Basic Syntax:**\n```cmd\nnetsh trace start capture=yes tracefile=c:\\capture.etl provider=Microsoft-Windows-TCPIP\n```\n\n**Common Scenarios:**\n• Network connectivity troubleshooting\n• Performance analysis\n• Security monitoring\n• Protocol debugging\n• Application network behavior analysis"
             },
             {
-              "id": "cain-capabilities",
+              "id": "netsh-commands",
               "type": "text",
-              "title": "Tool Capabilities",
-              "content": "Cain & Abel can recover passwords for:\n• Network sniffing and ARP poisoning\n• Cracking encrypted passwords using dictionary attacks\n• Recording VoIP conversations\n• Decoding scrambled passwords\n• Revealing password boxes"
+              "title": "Essential Netsh Trace Commands",
+              "content": "**Start Basic Capture:**\n```cmd\nnetsh trace start capture=yes tracefile=network.etl maxsize=100\n```\n\n**Start with Filters:**\n```cmd\nnetsh trace start capture=yes tracefile=filtered.etl provider=Microsoft-Windows-TCPIP keywords=ut:TcpipKeyword level=5 maxsize=500\n```\n\n**Capture Specific IP:**\n```cmd\nnetsh trace start capture=yes tracefile=host.etl provider=Microsoft-Windows-TCPIP keywords=ut:TcpipKeyword ipv4.address=192.168.1.100\n```\n\n**Stop Capture:**\n```cmd\nnetsh trace stop\n```\n\n**View Available Providers:**\n```cmd\nnetsh trace show providers\n```\n\n**Show Capture Status:**\n```cmd\nnetsh trace show status\n```\n\n**Convert ETL to PCAP:**\n```cmd\nnetsh trace convert input=network.etl output=network.cap\n```"
             },
             {
-              "id": "download-link",
+              "id": "pktmon-utility",
               "type": "text",
-              "title": "Download Information",
-              "content": "Download from: https://www.filehorse.com/download-cain-and-abel/\n\nNote: This tool should only be used for legitimate security testing purposes."
+              "title": "Windows pktmon: Advanced Packet Monitoring",
+              "content": "Pktmon is a built-in packet monitoring tool introduced in Windows 10 version 1809, providing advanced packet capture and monitoring capabilities.\n\n**Pktmon Features:**\n• Real-time packet monitoring\n• Cross-component packet tracking\n• Packet drop detection\n• Filtering capabilities\n• Integration with Windows networking stack\n• Container network monitoring\n\n**Basic Commands:**\n\n**List Network Adapters:**\n```cmd\npktmon comp list\n```\n\n**Start Monitoring:**\n```cmd\npktmon start --etw -p 0 -c 1024\n```\n\n**Add Filters:**\n```cmd\npktmon filter add -p 80\npktmon filter add -i 192.168.1.100\n```\n\n**Stop and Convert:**\n```cmd\npktmon stop\npktmon pcapng PktMon.etl -o output.pcapng\n```\n\n**Reset Counters:**\n```cmd\npktmon counters -z\n```\n\n**View Statistics:**\n```cmd\npktmon counters\n```"
+            },
+            {
+              "id": "raw-sockets",
+              "type": "text",
+              "title": "Raw Socket Programming for Packet Capture",
+              "content": "Raw sockets provide low-level network access for custom packet capture applications.\n\n**Raw Socket Capabilities:**\n• Direct access to IP layer\n• Custom packet crafting\n• Protocol implementation\n• Network monitoring applications\n• Security tool development\n\n**C# Raw Socket Example:**\n```csharp\nusing System;\nusing System.Net;\nusing System.Net.Sockets;\n\npublic class RawSocketSniffer\n{\n    private Socket socket;\n    \n    public void StartSniffing()\n    {\n        socket = new Socket(AddressFamily.InterNetwork, \n                           SocketType.Raw, \n                           ProtocolType.IP);\n        \n        socket.Bind(new IPEndPoint(IPAddress.Any, 0));\n        socket.SetSocketOption(SocketOptionLevel.IP, \n                              SocketOptionName.HeaderIncluded, true);\n        \n        byte[] byTrue = new byte[4] {1, 0, 0, 0};\n        byte[] byOut = new byte[4] {1, 0, 0, 0};\n        \n        socket.IOControl(IOControlCode.ReceiveAll, byTrue, byOut);\n        \n        // Begin receiving packets\n        BeginReceive();\n    }\n}\n```\n\n**Python Raw Socket Example:**\n```python\nimport socket\nimport struct\n\ndef packet_sniffer():\n    # Create raw socket\n    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)\n    s.bind((\"192.168.1.100\", 0))\n    s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)\n    \n    # Enable promiscuous mode\n    s.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)\n    \n    while True:\n        packet = s.recvfrom(65565)\n        # Process packet data\n        parse_packet(packet[0])\n```"
+            },
+            {
+              "id": "winpcap-npcap",
+              "type": "text",
+              "title": "WinPcap and Npcap: Windows Packet Capture Drivers",
+              "content": "**WinPcap (Legacy):**\n• Original Windows packet capture library\n• Based on libpcap\n• Windows 10 compatibility issues\n• No longer actively maintained\n• NDIS 5.x based\n\n**Npcap (Modern Solution):**\n• Successor to WinPcap\n• Active development and support\n• Windows 10/11 compatibility\n• NDIS 6.x based\n• Loopback capture support\n• Raw 802.11 wireless capture\n• WinPcap compatibility mode\n\n**Npcap Installation:**\n1. Download from https://npcap.com/\n2. Run installer as Administrator\n3. Select installation options:\n   • Install Npcap in WinPcap API-compatible mode\n   • Support raw 802.11 traffic\n   • Support loopback traffic\n4. Restart system if required\n\n**Programming with Npcap:**\n```c\n#include <pcap.h>\n\nint main()\n{\n    pcap_if_t *alldevs;\n    pcap_if_t *d;\n    char errbuf[PCAP_ERRBUF_SIZE];\n    \n    // Retrieve device list\n    if (pcap_findalldevs(&alldevs, errbuf) == -1)\n    {\n        fprintf(stderr, \"Error: %s\\n\", errbuf);\n        return 1;\n    }\n    \n    // Open device for capture\n    pcap_t *handle = pcap_open_live(alldevs->name, 65536, 1, 1000, errbuf);\n    \n    if (handle == NULL)\n    {\n        fprintf(stderr, \"Error opening device: %s\\n\", errbuf);\n        return 1;\n    }\n    \n    // Start capture\n    pcap_loop(handle, 0, packet_handler, NULL);\n    \n    return 0;\n}\n```"
+            },
+            {
+              "id": "microsoft-message-analyzer",
+              "type": "text",
+              "title": "Microsoft Message Analyzer (Historical)",
+              "content": "**Microsoft Message Analyzer Overview:**\nMicrosoft Message Analyzer was Microsoft's network protocol analyzer that replaced Network Monitor. Though discontinued in 2019, understanding its capabilities provides insight into enterprise network analysis.\n\n**Key Features (Historical Reference):**\n• Multi-layer protocol analysis\n• Real-time and offline analysis\n• Advanced filtering and search\n• Custom protocol parsers\n• Integration with Windows ETW\n• PowerShell scripting support\n• Chart and graph visualizations\n\n**Migration Path:**\n• **Wireshark**: Primary recommendation\n• **Netsh trace**: For basic Windows scenarios\n• **Network Monitor 3.4**: Legacy support\n• **Third-party tools**: SolarWinds, PRTG\n\n**Lessons Learned:**\n• Importance of cross-platform tools\n• Community-driven development sustainability\n• Open-source tool longevity\n• Vendor lock-in considerations\n\n**Modern Alternatives:**\n• **Wireshark**: Best overall replacement\n• **tcpdump**: Command-line option\n• **SolarWinds NPM**: Enterprise solution\n• **PRTG**: Network monitoring\n• **Nagios**: Infrastructure monitoring"
+            }
+          ]
+        },
+        {
+          "id": "specialized-analysis-tools",
+          "title": "Specialized Windows Network Analysis Tools",
+          "description": "Advanced tools for specific network analysis scenarios",
+          "type": "hands-on",
+          "estimatedTime": 45,
+          "content": [
+            {
+              "id": "networkminer",
+              "type": "text",
+              "title": "NetworkMiner: Forensic Network Analysis",
+              "content": "NetworkMiner is a passive network security tool that can detect operating systems, sessions, hostnames, open ports, and more without putting any traffic on the network.\n\n**Key Features:**\n• **Passive OS Fingerprinting**: Identify operating systems\n• **File Extraction**: Carve files from network traffic\n• **Credential Harvesting**: Extract transmitted credentials\n• **Session Analysis**: Reconstruct network sessions\n• **Geolocation**: Map IP addresses to locations\n• **Timeline Analysis**: Chronological event reconstruction\n\n**Supported Protocols:**\n• TCP, UDP, ICMP protocols\n• HTTP, HTTPS, FTP file transfers\n• Email protocols (SMTP, POP3, IMAP)\n• DNS queries and responses\n• SMB/CIFS file shares\n• Telnet and SSH sessions\n\n**Installation and Setup:**\n1. Download from https://www.netresec.com/\n2. Free version available\n3. Professional version with advanced features\n4. No installation required (portable)\n5. .NET Framework dependency\n\n**Basic Usage:**\n1. Load PCAP files or capture live traffic\n2. Automatic host discovery and fingerprinting\n3. Browse extracted files and credentials\n4. Analyze network conversations\n5. Export findings and reports\n\n**Forensic Applications:**\n• Incident response investigations\n• Malware traffic analysis\n• Data leakage detection\n• Network archaeology\n• Compliance auditing"
+            },
+            {
+              "id": "burp-suite-proxy",
+              "type": "text",
+              "title": "Burp Suite: Web Application Traffic Analysis",
+              "content": "Burp Suite is an integrated platform for web application security testing, including powerful traffic interception and analysis capabilities.\n\n**Core Components:**\n• **Proxy**: Intercept and modify HTTP/S traffic\n• **Scanner**: Automated vulnerability detection\n• **Repeater**: Manual request testing\n• **Intruder**: Automated attack tool\n• **Sequencer**: Token analysis\n• **Decoder**: Encoding/decoding utilities\n• **Comparer**: Response comparison\n• **Extensions**: BApp Store plugins\n\n**Proxy Configuration:**\n1. Configure browser proxy settings\n2. Install Burp CA certificate\n3. Enable HTTPS interception\n4. Set scope and filters\n5. Configure upstream proxies if needed\n\n**Traffic Analysis Features:**\n• **Request/Response Viewer**: Detailed HTTP analysis\n• **Message Editor**: Hex, text, and rendered views\n• **Search**: Content and header searching\n• **Highlights**: Color-code interesting items\n• **Comments**: Annotate requests\n• **Tags**: Organize traffic\n\n**Advanced Features:**\n• **Session Handling**: Authentication management\n• **Macro Recording**: Automate complex workflows\n• **Custom Headers**: Add authentication tokens\n• **SSL Pass-through**: Selective HTTPS handling\n• **Upstream TLS**: Corporate proxy integration\n\n**Professional Features:**\n• **Active Scanning**: Automated vulnerability testing\n• **Passive Scanning**: Background analysis\n• **Collaborator**: Out-of-band interaction testing\n• **Intruder**: Advanced attack automation\n• **Extensions**: Professional-only BApps"
+            },
+            {
+              "id": "fiddler-analysis",
+              "type": "text",
+              "title": "Telerik Fiddler: HTTP/S Traffic Debugging",
+              "content": "Fiddler is a free web debugging proxy that logs all HTTP(S) traffic between your computer and the Internet.\n\n**Core Capabilities:**\n• **HTTP/S Proxy**: Capture all web traffic\n• **Traffic Inspection**: Detailed request/response analysis\n• **Performance Analysis**: Timing and optimization\n• **Security Testing**: SSL/TLS analysis\n• **API Testing**: REST and SOAP services\n• **Mobile Testing**: Device traffic capture\n\n**Interface Components:**\n• **Web Sessions**: Traffic list view\n• **Inspectors**: Request/response details\n• **AutoResponder**: Mock responses\n• **Composer**: Craft custom requests\n• **Timeline**: Performance visualization\n• **Statistics**: Traffic analytics\n\n**Advanced Features:**\n• **FiddlerScript**: JScript.NET customization\n• **Rules**: Traffic modification\n• **Breakpoints**: Request/response interruption\n• **Filters**: Traffic scoping\n• **Compare**: Session comparison\n• **Export**: Multiple format support\n\n**Mobile Device Configuration:**\n1. Configure device proxy settings\n2. Install Fiddler root certificate\n3. Enable HTTPS decryption\n4. Configure remote connections\n5. Test connectivity\n\n**Performance Analysis:**\n• **Waterfall Charts**: Request timing\n• **Statistics Tab**: Performance metrics\n• **Timeline View**: Concurrent requests\n• **Custom Columns**: Specific metrics\n• **Export Data**: External analysis tools"
+            },
+            {
+              "id": "sysinternals-tools",
+              "type": "text",
+              "title": "Sysinternals Network Tools",
+              "content": "Microsoft Sysinternals provides powerful network analysis and monitoring tools integrated with Windows.\n\n**TCPView:**\n• Real-time network connection monitoring\n• Process to network connection mapping\n• Kill network connections\n• Export connection data\n• Command-line version (tcpvcon)\n\n**Process Monitor (ProcMon):**\n• File system activity monitoring\n• Registry access tracking\n• Network activity correlation\n• Process creation monitoring\n• Advanced filtering capabilities\n\n**Network Usage:**\n1. Filter by Process and Path\n2. Monitor network operations\n3. Correlate with file/registry activity\n4. Identify data exfiltration\n5. Analyze application behavior\n\n**PsTools Suite:**\n• **PsList**: Process information\n• **PsFile**: Open file information\n• **PsLoggedOn**: Logged on users\n• **PsService**: Service control\n• **PsExec**: Remote command execution\n\n**Network Diagnostics:**\n• **PsPing**: Enhanced ping utility\n• **PsKill**: Process termination\n• **PsShutdown**: Remote shutdown\n\n**Advanced Monitoring:**\n• **DebugView**: Debug output capture\n• **PortMon**: Serial/parallel port monitoring\n• **FileMon**: File system monitoring (legacy)\n• **RegMon**: Registry monitoring (legacy)\n\n**Integration with Other Tools:**\n• Export ProcMon data to CSV\n• Correlate with Wireshark captures\n• Combine with Event Log analysis\n• Script automation with PowerShell"
+            },
+            {
+              "id": "powershell-networking",
+              "type": "text",
+              "title": "PowerShell Network Analysis and Monitoring",
+              "content": "PowerShell provides powerful cmdlets for network analysis, monitoring, and automation.\n\n**Network Configuration Cmdlets:**\n```powershell\n# Get network adapters\nGet-NetAdapter\n\n# Get IP configuration\nGet-NetIPConfiguration\n\n# Get routing table\nGet-NetRoute\n\n# Get ARP table\nGet-NetNeighbor\n\n# Get DNS cache\nGet-DnsClientCache\n```\n\n**Network Connectivity Testing:**\n```powershell\n# Enhanced ping\nTest-NetConnection -ComputerName google.com -Port 80\n\n# Trace route\nTest-NetConnection -ComputerName 8.8.8.8 -TraceRoute\n\n# DNS resolution\nResolve-DnsName -Name google.com -Type A\n\n# Port scan\n1..1024 | ForEach-Object { Test-NetConnection -ComputerName 192.168.1.1 -Port $_ -WarningAction SilentlyContinue }\n```\n\n**Network Statistics:**\n```powershell\n# TCP connections\nGet-NetTCPConnection\n\n# UDP endpoints\nGet-NetUDPEndpoint\n\n# Network statistics\nGet-NetAdapterStatistics\n\n# Firewall rules\nGet-NetFirewallRule\n```\n\n**Event Log Analysis:**\n```powershell\n# Security events\nGet-WinEvent -FilterHashtable @{LogName='Security'; ID=4624,4625}\n\n# Network events\nGet-WinEvent -FilterHashtable @{LogName='System'; ProviderName='Microsoft-Windows-Kernel-Network'}\n\n# DNS events\nGet-WinEvent -FilterHashtable @{LogName='DNS Server'}\n```\n\n**Automation Scripts:**\n```powershell\n# Network monitoring script\nwhile ($true) {\n    $connections = Get-NetTCPConnection | Where-Object {$_.State -eq 'Established'}\n    $connections | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, OwningProcess\n    Start-Sleep -Seconds 5\n}\n\n# Bandwidth monitoring\n$adapter = Get-NetAdapter | Where-Object {$_.Status -eq 'Up'}\n$stats1 = Get-NetAdapterStatistics -Name $adapter.Name\nStart-Sleep -Seconds 1\n$stats2 = Get-NetAdapterStatistics -Name $adapter.Name\n$bytesPerSecond = $stats2.BytesReceived - $stats1.BytesReceived\nWrite-Host \"Bytes per second: $bytesPerSecond\"\n```"
             }
           ]
         },
