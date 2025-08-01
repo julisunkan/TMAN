@@ -46,17 +46,17 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case "module": return "text-[hsl(207,90%,54%)] bg-[hsl(207,90%,54%)]/20";
-      case "lesson": return "text-[hsl(120,100%,50%)] bg-[hsl(120,100%,50%)]/20";
-      case "section": return "text-[hsl(14,100%,60%)] bg-[hsl(14,100%,60%)]/20";
-      default: return "text-[hsl(215,16%,47%)] bg-[hsl(215,16%,47%)]/20";
+      case "module": return "text-primary bg-primary/20";
+      case "lesson": return "text-yellow-600 bg-yellow-100";
+      case "section": return "text-red-600 bg-red-100";
+      default: return "text-gray-600 bg-gray-100";
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-[hsl(240,10%,6%)]/90 search-overlay z-50 fade-in">
+    <div className="fixed inset-0 bg-black/50 search-overlay z-50 fade-in">
       <div className="p-4 h-full flex flex-col">
         <div className="flex items-center space-x-3 mb-6">
           <div className="flex-1 relative">

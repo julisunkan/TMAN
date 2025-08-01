@@ -43,10 +43,10 @@ export default function Tutorial() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[hsl(240,10%,6%)]">
+      <div className="min-h-screen bg-background">
         <MobileHeader />
         <div className="flex items-center justify-center min-h-[50vh]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[hsl(120,100%,50%)]"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
         <BottomNavigation />
       </div>
@@ -55,10 +55,10 @@ export default function Tutorial() {
 
   if (!module) {
     return (
-      <div className="min-h-screen bg-[hsl(240,10%,6%)]">
+      <div className="min-h-screen bg-background">
         <MobileHeader />
         <div className="flex items-center justify-center min-h-[50vh]">
-          <p className="text-[hsl(215,16%,47%)]">Module not found</p>
+          <p className="text-gray-600">Module not found</p>
         </div>
         <BottomNavigation />
       </div>

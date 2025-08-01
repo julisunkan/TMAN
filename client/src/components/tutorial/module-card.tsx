@@ -39,30 +39,30 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
   const isLocked = false; // All modules are unlocked
   
   const getStatusColor = () => {
-    if (isCompleted) return "border-[hsl(120,100%,50%)]/30 bg-[hsl(120,100%,50%)]/5";
-    if (isInProgress) return "border-[hsl(207,90%,54%)]/30 bg-[hsl(207,90%,54%)]/5";
-    return "border-[hsl(240,3.7%,15.9%)]";
+    if (isCompleted) return "border-green-300 bg-green-50";
+    if (isInProgress) return "border-primary/30 bg-primary/5";
+    return "border-border";
   };
 
   const getStatusIcon = () => {
-    if (isCompleted) return { icon: Check, color: "text-[hsl(120,100%,50%)] bg-[hsl(120,100%,50%)]" };
-    if (isInProgress) return { icon: Play, color: "text-white bg-[hsl(207,90%,54%)]" };
-    return { icon: BookOpen, color: "text-white bg-[hsl(240,3.7%,15.9%)]" };
+    if (isCompleted) return { icon: Check, color: "text-white bg-green-500" };
+    if (isInProgress) return { icon: Play, color: "text-white bg-primary" };
+    return { icon: BookOpen, color: "text-white bg-gray-500" };
   };
 
   const getStatusText = () => {
-    if (isCompleted) return { text: "Completed", color: "text-[hsl(120,100%,50%)]" };
-    if (isInProgress) return { text: "In Progress", color: "text-[hsl(207,90%,54%)]" };
-    return { text: "Not Started", color: "text-[hsl(215,16%,47%)]" };
+    if (isCompleted) return { text: "Completed", color: "text-green-600" };
+    if (isInProgress) return { text: "In Progress", color: "text-primary" };
+    return { text: "Not Started", color: "text-gray-600" };
   };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case "intro": return "bg-[hsl(120,100%,50%)]/20 text-[hsl(120,100%,50%)]";
-      case "intermediate": return "bg-[hsl(207,90%,54%)]/20 text-[hsl(207,90%,54%)]";
-      case "advanced": return "bg-[hsl(14,100%,60%)]/20 text-[hsl(14,100%,60%)]";
-      case "tools": return "bg-purple-400/20 text-purple-400";
-      default: return "bg-[hsl(215,16%,47%)]/20 text-[hsl(215,16%,47%)]";
+      case "intro": return "bg-green-100 text-green-700";
+      case "intermediate": return "bg-blue-100 text-blue-700";
+      case "advanced": return "bg-red-100 text-red-700";
+      case "tools": return "bg-yellow-100 text-yellow-700";
+      default: return "bg-gray-100 text-gray-700";
     }
   };
 
