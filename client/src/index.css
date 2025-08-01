@@ -3,36 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(0, 0%, 98%);
+  --background: linear-gradient(135deg, hsl(220, 100%, 97%) 0%, hsl(210, 100%, 98%) 100%);
   --foreground: hsl(224, 71%, 20%);
-  --muted: hsl(220, 14%, 96%);
+  --muted: hsl(220, 60%, 96%);
   --muted-foreground: hsl(220, 8%, 46%);
   --popover: hsl(0, 0%, 100%);
   --popover-foreground: hsl(224, 71%, 20%);
   --card: hsl(0, 0%, 100%);
   --card-foreground: hsl(224, 71%, 20%);
-  --border: hsl(220, 13%, 91%);
-  --input: hsl(220, 13%, 91%);
+  --border: hsl(220, 40%, 90%);
+  --input: hsl(220, 40%, 94%);
   --primary: hsl(221, 83%, 53%);
   --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(210, 40%, 96%);
-  --secondary-foreground: hsl(222, 84%, 25%);
-  --accent: hsl(43, 96%, 89%);
-  --accent-foreground: hsl(38, 92%, 50%);
+  --secondary: hsl(43, 96%, 56%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(0, 84%, 60%);
+  --accent-foreground: hsl(0, 0%, 98%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(221, 83%, 53%);
-  --radius: 0.5rem;
+  --radius: 1rem;
   
-  /* Light theme colors with blue, yellow, red */
-  --bright-blue: hsl(221, 83%, 53%);
-  --light-blue: hsl(213, 93%, 88%);
-  --warning-yellow: hsl(43, 96%, 56%);
-  --light-yellow: hsl(48, 100%, 96%);
-  --danger-red: hsl(0, 84%, 60%);
-  --light-red: hsl(0, 93%, 94%);
-  --neutral-gray: hsl(215, 16%, 47%);
-  --light-gray: hsl(220, 14%, 96%);
+  /* Vibrant color palette */
+  --electric-blue: hsl(221, 83%, 53%);
+  --sky-blue: hsl(213, 100%, 88%);
+  --golden-yellow: hsl(43, 96%, 56%);
+  --cream-yellow: hsl(48, 100%, 96%);
+  --coral-red: hsl(0, 84%, 60%);
+  --pink-red: hsl(0, 93%, 94%);
+  --purple: hsl(270, 70%, 60%);
+  --green: hsl(140, 70%, 50%);
+  --orange: hsl(25, 95%, 55%);
 }
 
 .dark {
@@ -63,8 +64,10 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
+    background: linear-gradient(135deg, hsl(220, 100%, 97%) 0%, hsl(210, 100%, 98%) 100%);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
   }
 
   code {
