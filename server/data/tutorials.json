@@ -1,0 +1,766 @@
+{
+  "modules": [
+    {
+      "id": "lab-setup",
+      "title": "Lab Environment Setup",
+      "description": "Set up VirtualBox, Kali Linux, and Windows environments for ethical hacking practice",
+      "category": "intro",
+      "estimatedTime": 45,
+      "icon": "fas fa-desktop",
+      "tags": ["setup", "virtualization", "kali", "windows"],
+      "lessons": [
+        {
+          "id": "virtualbox-setup",
+          "title": "VirtualBox Installation",
+          "description": "Install and configure VirtualBox for virtualization",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "intro",
+              "type": "text",
+              "title": "Introduction",
+              "content": "VirtualBox is a free virtualization platform that allows you to run multiple operating systems on a single machine. This is essential for ethical hacking practice as it provides isolated environments."
+            },
+            {
+              "id": "download",
+              "type": "text",
+              "title": "Download VirtualBox",
+              "content": "Visit the official VirtualBox website and download the latest version for your operating system."
+            },
+            {
+              "id": "install-cmd",
+              "type": "command",
+              "title": "Installation Command (Linux)",
+              "content": "sudo apt update && sudo apt install virtualbox virtualbox-ext-pack",
+              "copyable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windows-footprinting",
+      "title": "Windows Command Line Footprinting",
+      "description": "Learn footprinting basics using Windows command line tools like ping, nslookup, and tracert",
+      "category": "intermediate",
+      "estimatedTime": 60,
+      "icon": "fas fa-terminal",
+      "tags": ["footprinting", "reconnaissance", "windows", "networking"],
+      "lessons": [
+        {
+          "id": "ping-basics",
+          "title": "Ping Command Fundamentals",
+          "description": "Master the ping command for network reconnaissance",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "ping-intro",
+              "type": "text",
+              "title": "What is Ping?",
+              "content": "The ping command sends ICMP (Internet Control Message Protocol) packets to test the reachability of a host and measures round-trip time."
+            },
+            {
+              "id": "basic-ping",
+              "type": "command",
+              "title": "Basic Ping Command",
+              "content": "ping www.certifiedhacker.com",
+              "copyable": true
+            },
+            {
+              "id": "ping-output",
+              "type": "code",
+              "title": "Expected Output",
+              "language": "bash",
+              "content": "Reply from 162.241.216.11: bytes=32 time=160ms TTL=40\nReply from 162.241.216.11: bytes=32 time=151ms TTL=40\nReply from 162.241.216.11: bytes=32 time=151ms TTL=40\nReply from 162.241.216.11: bytes=32 time=153ms TTL=40\n\nPing statistics for 162.241.216.11:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)\nApproximate round trip times in milli-seconds:\n    Minimum = 151ms, Maximum = 160ms, Average = 153ms"
+            }
+          ]
+        },
+        {
+          "id": "frame-size-discovery",
+          "title": "Maximum Frame Size Discovery",
+          "description": "Find the maximum frame size on the network using ping",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "frame-concept",
+              "type": "text",
+              "title": "Frame Size Concept",
+              "content": "Network frames have maximum transmission unit (MTU) limits. We can discover this using ping with the don't fragment flag."
+            },
+            {
+              "id": "ping-frame-test",
+              "type": "command",
+              "title": "Test Frame Size",
+              "content": "ping www.certifiedhacker.com -f -l 1500",
+              "copyable": true
+            },
+            {
+              "id": "fragmentation-error",
+              "type": "code",
+              "title": "Fragmentation Error",
+              "language": "bash",
+              "content": "Packet needs to be fragmented but DF set."
+            },
+            {
+              "id": "find-max-size",
+              "type": "text",
+              "title": "Finding Maximum Size",
+              "content": "Try different values until you find the maximum frame size that works without fragmentation. Start with 1472 bytes and adjust accordingly."
+            }
+          ]
+        },
+        {
+          "id": "ttl-investigation",
+          "title": "TTL Investigation",
+          "description": "Understand Time to Live values and their significance",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "ttl-concept",
+              "type": "text",
+              "title": "What is TTL?",
+              "content": "Time to Live (TTL) is a mechanism that limits the lifespan of data in a network. When TTL reaches 0, routers discard the packet to prevent infinite loops."
+            },
+            {
+              "id": "ttl-test",
+              "type": "command",
+              "title": "Set TTL Value",
+              "content": "ping www.certifiedhacker.com -i 3",
+              "copyable": true
+            },
+            {
+              "id": "ttl-expired",
+              "type": "code",
+              "title": "TTL Expired Response",
+              "language": "bash",
+              "content": "Reply from 10.10.127.254: TTL expired in transit.\nReply from 10.10.127.254: TTL expired in transit.\nReply from 10.10.127.254: TTL expired in transit."
+            }
+          ]
+        },
+        {
+          "id": "traceroute",
+          "title": "Traceroute Analysis",
+          "description": "Trace the path packets take to reach their destination",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "tracert-intro",
+              "type": "text",
+              "title": "Traceroute Purpose",
+              "content": "Traceroute shows the path packets take through the network to reach their destination, revealing intermediate routers and network topology."
+            },
+            {
+              "id": "tracert-cmd",
+              "type": "command",
+              "title": "Windows Traceroute",
+              "content": "tracert www.certifiedhacker.com",
+              "copyable": true
+            },
+            {
+              "id": "tracert-analysis",
+              "type": "text",
+              "title": "Analyzing Results",
+              "content": "Each line in the traceroute output represents a hop. The number of hops tells you how many routers the packet passes through to reach its destination."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "packet-crafting",
+      "title": "Packet Crafting with hping3",
+      "description": "Learn UDP and TCP packet crafting techniques using hping3 for network testing",
+      "category": "intermediate",
+      "estimatedTime": 55,
+      "icon": "fas fa-network-wired",
+      "tags": ["packet-crafting", "hping3", "tcp", "udp", "networking"],
+      "prerequisites": ["lab-setup"],
+      "lessons": [
+        {
+          "id": "hping3-basics",
+          "title": "hping3 Fundamentals",
+          "description": "Introduction to hping3 and basic packet crafting",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "hping3-intro",
+              "type": "text",
+              "title": "What is hping3?",
+              "content": "hping3 is a scriptable packet crafting tool that uses the Tcl language. It allows you to create custom network packets for testing network devices and discovering vulnerabilities."
+            },
+            {
+              "id": "basic-hping3",
+              "type": "command",
+              "title": "Basic hping3 Command",
+              "content": "hping3 -c 3 <Target IP address>",
+              "copyable": true
+            },
+            {
+              "id": "packet-count",
+              "type": "text",
+              "title": "Understanding Parameters",
+              "content": "The -c parameter stands for packet count, meaning we only want to send three packets to the target machine."
+            },
+            {
+              "id": "syn-scan",
+              "type": "command",
+              "title": "SYN Flag Scan with Port Range",
+              "content": "hping3 --scan 1-3000 -S <Target IP address>",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "udp-crafting",
+          "title": "UDP Packet Crafting",
+          "description": "Create and send custom UDP packets",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "udp-command",
+              "type": "command",
+              "title": "UDP Packet Crafting",
+              "content": "hping3 <Target IP address> --udp --rand-source --data 500",
+              "copyable": true
+            },
+            {
+              "id": "udp-params",
+              "type": "text",
+              "title": "Parameter Explanation",
+              "content": "--udp: UDP mode\n--rand-source: Random source address\n--data: Data size in bytes"
+            },
+            {
+              "id": "wireshark-analysis",
+              "type": "info",
+              "title": "Analysis with Wireshark",
+              "content": "Use Wireshark on the target machine to capture and analyze the UDP packets. Look for the Data (500 bytes) section in the packet details."
+            }
+          ]
+        },
+        {
+          "id": "tcp-syn-requests",
+          "title": "TCP SYN Requests",
+          "description": "Send TCP SYN requests to specific ports",
+          "type": "hands-on",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "tcp-syn-cmd",
+              "type": "command",
+              "title": "TCP SYN Request",
+              "content": "hping3 -S <Target IP address> -p 80 -c 5",
+              "copyable": true
+            },
+            {
+              "id": "tcp-params",
+              "type": "text",
+              "title": "Parameter Breakdown",
+              "content": "-S: TCP SYN request\n-p: Target port (80 in this example)\n-c: Packet count (5 packets)"
+            }
+          ]
+        },
+        {
+          "id": "tcp-flooding",
+          "title": "TCP Flooding Technique",
+          "description": "Perform TCP flooding for testing purposes",
+          "type": "lab",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "flood-warning",
+              "type": "warning",
+              "title": "Legal Warning",
+              "content": "TCP flooding should only be performed in controlled lab environments with proper authorization. Unauthorized flooding is illegal and unethical."
+            },
+            {
+              "id": "tcp-flood-cmd",
+              "type": "command",
+              "title": "TCP Flood Command",
+              "content": "hping3 <Target IP address> --flood",
+              "copyable": true
+            },
+            {
+              "id": "flood-explanation",
+              "type": "text",
+              "title": "Flood Parameter",
+              "content": "The --flood parameter sends packets as fast as possible without waiting for replies. This can overwhelm the target system's resources."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dos-detection",
+      "title": "DoS Attack Detection",
+      "description": "Detect and analyze DoS attacks using KFSensor and Wireshark",
+      "category": "intermediate",
+      "estimatedTime": 50,
+      "icon": "fas fa-shield-alt",
+      "tags": ["dos", "detection", "kfsensor", "wireshark", "analysis"],
+      "lessons": [
+        {
+          "id": "kfsensor-setup",
+          "title": "KFSensor Configuration",
+          "description": "Set up KFSensor honeypot for DoS detection",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "kfsensor-intro",
+              "type": "text",
+              "title": "About KFSensor",
+              "content": "KFSensor is a Windows-based honeypot IDS that acts as a decoy server to attract and detect hackers and worms by simulating vulnerable system services."
+            },
+            {
+              "id": "install-tools",
+              "type": "checklist",
+              "title": "Required Tools",
+              "content": "• Install KFSensor on Windows 10\n• Install Wireshark for packet analysis\n• Ensure Kali Linux is available for attack simulation"
+            },
+            {
+              "id": "kfsensor-config",
+              "type": "text",
+              "title": "Configuration Steps",
+              "content": "1. Launch KFSensor as Administrator\n2. Click Settings → Set Up Wizard\n3. Select 'Cautious' from DoS Options\n4. Enable 'packet dump files' from Network Protocol Analyzer"
+            }
+          ]
+        },
+        {
+          "id": "dos-attack-simulation",
+          "title": "DoS Attack Simulation",
+          "description": "Perform controlled DoS attack for detection testing",
+          "type": "lab",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "port-scan",
+              "type": "command",
+              "title": "Check Target Port",
+              "content": "nmap -p 21 <Windows 10 IP address>",
+              "copyable": true
+            },
+            {
+              "id": "syn-flood-attack",
+              "type": "command",
+              "title": "SYN Flooding Attack",
+              "content": "hping3 -d 100 -S -p 21 --flood <Windows 10 IP Address>",
+              "copyable": true
+            },
+            {
+              "id": "attack-params",
+              "type": "text",
+              "title": "Attack Parameters",
+              "content": "-S: SYN Flooding\n-p 21: Target FTP port\n-d 100: Data size per packet (100 bytes)\n--flood: Maximum speed flooding"
+            },
+            {
+              "id": "resource-exhaustion",
+              "type": "info",
+              "title": "Observing Impact",
+              "content": "During the attack, the Windows machine may become unresponsive due to resource exhaustion. This demonstrates the effectiveness of the DoS attack."
+            }
+          ]
+        },
+        {
+          "id": "attack-analysis",
+          "title": "Attack Detection and Analysis",
+          "description": "Analyze detected attacks using KFSensor and Wireshark",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "kfsensor-detection",
+              "type": "text",
+              "title": "KFSensor Detection",
+              "content": "After the attack, KFSensor will show the FTP icon changing to red, indicating detected attack traffic. Look for events labeled 'DOS Attack' in the event log."
+            },
+            {
+              "id": "event-analysis",
+              "type": "text",
+              "title": "Event Details",
+              "content": "Double-click events to view details including severity level (High), event description (Syn Scan), visitor IP address (attacker), and sensor name (FTP)."
+            },
+            {
+              "id": "wireshark-analysis",
+              "type": "text",
+              "title": "Wireshark Packet Analysis",
+              "content": "Packet dump files are stored in C:\\kfsensor\\dumps by default. Open these files in Wireshark to analyze packet headers, source IP addresses, and attack patterns."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "njrat-analysis",
+      "title": "njRAT Remote Access Trojan",
+      "description": "Understand njRAT capabilities and remote access techniques",
+      "category": "advanced",
+      "estimatedTime": 75,
+      "icon": "fas fa-bug",
+      "tags": ["rat", "malware", "remote-access", "njrat", "analysis"],
+      "lessons": [
+        {
+          "id": "njrat-overview",
+          "title": "njRAT Capabilities Overview",
+          "description": "Understanding the features and capabilities of njRAT",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "njrat-intro",
+              "type": "text",
+              "title": "What is njRAT?",
+              "content": "njRAT is a Remote Access Trojan with powerful data-stealing capabilities. It can log keystrokes, access cameras, steal browser credentials, manipulate files, and provide complete remote desktop access."
+            },
+            {
+              "id": "rat-capabilities",
+              "type": "text",
+              "title": "RAT Capabilities",
+              "content": "RATs allow attackers to:\n• Remotely access complete GUI\n• Control victim's computer without awareness\n• Perform screenshot and camera capture\n• Execute code and shell commands\n• Access files and manipulate processes\n• Log keystrokes and passwords\n• Manage Windows registry"
+            },
+            {
+              "id": "infection-methods",
+              "type": "info",
+              "title": "Infection Vectors",
+              "content": "njRAT typically spreads through:\n• Phishing email attachments\n• Drive-by downloads from malicious websites\n• Infected USB drives\n• Network file shares\n• Social engineering attacks"
+            }
+          ]
+        },
+        {
+          "id": "server-creation",
+          "title": "Creating njRAT Server",
+          "description": "Build and configure njRAT server executable",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "launch-njrat",
+              "type": "text",
+              "title": "Launch njRAT",
+              "content": "Start njRAT on the attacker machine (Windows 10). A GUI will appear with a popup asking for the port number for target communication."
+            },
+            {
+              "id": "port-config",
+              "type": "text",
+              "title": "Port Configuration",
+              "content": "Use the default port 5552 and click Start to begin listening for incoming connections from infected targets."
+            },
+            {
+              "id": "builder-access",
+              "type": "text",
+              "title": "Access Builder",
+              "content": "Click the 'Builder' button in the lower-left corner to access the server creation interface."
+            },
+            {
+              "id": "server-config",
+              "type": "text",
+              "title": "Server Configuration",
+              "content": "In the Builder dialog:\n1. Enter the attacker machine's IP address\n2. Check 'Copy to StartUp and Registry StartUp' for persistence\n3. Click 'Build' to create the executable\n4. Save as 'Example.exe' on the desktop"
+            }
+          ]
+        },
+        {
+          "id": "remote-capabilities",
+          "title": "Remote Control Capabilities",
+          "description": "Explore various remote control features of njRAT",
+          "type": "hands-on",
+          "estimatedTime": 25,
+          "content": [
+            {
+              "id": "file-manipulation",
+              "type": "text",
+              "title": "File System Access",
+              "content": "Right-click the connected target and select 'Manager' to access the file system. Navigate directories and perform operations like copy, delete, rename, and execute files."
+            },
+            {
+              "id": "process-management",
+              "type": "text",
+              "title": "Process Management",
+              "content": "Access 'Process Manager' to view running processes. Right-click any process to Kill, Delete, or Restart it, giving complete control over target system processes."
+            },
+            {
+              "id": "network-connections",
+              "type": "text",
+              "title": "Connection Management",
+              "content": "Use the 'Connections' menu to view active network connections. Kill specific connections between communicating machines through particular ports."
+            },
+            {
+              "id": "registry-access",
+              "type": "text",
+              "title": "Registry Manipulation",
+              "content": "Access the Windows Registry through the 'Registry' menu. Navigate registry hives and modify registry keys and values for system manipulation."
+            },
+            {
+              "id": "remote-shell",
+              "type": "text",
+              "title": "Remote Command Shell",
+              "content": "Launch 'Remote Shell' to get a command prompt on the target machine. Execute any command-line operations remotely."
+            }
+          ]
+        },
+        {
+          "id": "surveillance-features",
+          "title": "Surveillance and Monitoring",
+          "description": "Use njRAT's surveillance capabilities",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "remote-desktop",
+              "type": "text",
+              "title": "Remote Desktop Access",
+              "content": "Select 'Remote Desktop Connection' to view and interact with the target's desktop in real-time using mouse and keyboard input."
+            },
+            {
+              "id": "camera-microphone",
+              "type": "text",
+              "title": "Camera and Microphone",
+              "content": "Access 'Remote Cam' and 'Microphone' options to spy on the target through their webcam and record audio conversations."
+            },
+            {
+              "id": "keylogger",
+              "type": "text",
+              "title": "Keylogger Functionality",
+              "content": "Use the 'Keylogger' option to capture all keystrokes performed by the target, including passwords, messages, and sensitive information."
+            },
+            {
+              "id": "persistence",
+              "type": "warning",
+              "title": "Persistence Mechanism",
+              "content": "njRAT maintains persistence through startup and registry entries. Even if the victim restarts the machine, the RAT will automatically reconnect upon login."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disk-forensics",
+      "title": "Disk Analysis with hdparm and dd",
+      "description": "Learn disk analysis techniques using hdparm, dd, and hexedit for forensic investigations",
+      "category": "advanced",
+      "estimatedTime": 60,
+      "icon": "fas fa-hdd",
+      "tags": ["forensics", "disk-analysis", "hdparm", "dd", "hexedit"],
+      "lessons": [
+        {
+          "id": "hdparm-basics",
+          "title": "hdparm Fundamentals",
+          "description": "Introduction to hdparm for disk information gathering",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "hdparm-intro",
+              "type": "text",
+              "title": "What is hdparm?",
+              "content": "hdparm provides a command line interface to various kernel interfaces supported by the Linux SATA/PATA/SAS libata subsystem and older IDE driver subsystem."
+            },
+            {
+              "id": "hdparm-install",
+              "type": "command",
+              "title": "Install hdparm (Ubuntu)",
+              "content": "sudo apt-get install -y hdparm",
+              "copyable": true
+            },
+            {
+              "id": "disk-info",
+              "type": "command",
+              "title": "Get Disk Information",
+              "content": "hdparm -giI /dev/sda",
+              "copyable": true
+            },
+            {
+              "id": "parameter-explanation",
+              "type": "text",
+              "title": "Parameter Meanings",
+              "content": "-g: Display drive geometry (cylinders, heads, sectors)\n-i: Show identification info from boot/config time\n-I: Display detailed identification information"
+            }
+          ]
+        },
+        {
+          "id": "dd-operations",
+          "title": "Data Duplication with dd",
+          "description": "Master the dd command for disk imaging and data manipulation",
+          "type": "hands-on",
+          "estimatedTime": 25,
+          "content": [
+            {
+              "id": "dd-intro",
+              "type": "text",
+              "title": "Understanding dd",
+              "content": "The dd command allows direct reading and writing from/to different files. It's essential for disk imaging, data recovery, and forensic analysis."
+            },
+            {
+              "id": "create-directory",
+              "type": "command",
+              "title": "Create Working Directory",
+              "content": "mkdir /CaseStudies && cd /CaseStudies",
+              "copyable": true
+            },
+            {
+              "id": "create-sample",
+              "type": "command",
+              "title": "Create Sample File",
+              "content": "dd if=/dev/zero of=/CaseStudies/sample.dd bs=1M count=1",
+              "copyable": true
+            },
+            {
+              "id": "disk-sanitization",
+              "type": "command",
+              "title": "Disk Sanitization",
+              "content": "dd if=/dev/zero of=/dev/sdb bs=4K conv=noerror,sync",
+              "copyable": true
+            },
+            {
+              "id": "data-copying",
+              "type": "command",
+              "title": "Create Disk Copy",
+              "content": "dd if=/CaseStudies/sample.dd bs=4k of=/CaseStudies/copy.dd",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "hexedit-analysis",
+          "title": "Hex Analysis with hexedit",
+          "description": "Analyze binary data using hexedit",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "hexedit-install",
+              "type": "command",
+              "title": "Install hexedit",
+              "content": "dnf -y install hexedit",
+              "copyable": true
+            },
+            {
+              "id": "hexedit-usage",
+              "type": "text",
+              "title": "Using hexedit",
+              "content": "hexedit shows files in both ASCII and hexadecimal format. It's useful for inspecting binary files, executables, and raw disk data."
+            },
+            {
+              "id": "edit-sample",
+              "type": "command",
+              "title": "Edit Sample File",
+              "content": "hexedit sample.dd",
+              "copyable": true
+            },
+            {
+              "id": "view-hex-data",
+              "type": "command",
+              "title": "View Hex Data",
+              "content": "dd bs=512 skip=256 count=1 if=/CaseStudies/sample.dd | xxd",
+              "copyable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windows-sniffing-tools",
+      "title": "Windows Network Sniffing Tools",
+      "description": "Comprehensive guide to Windows-based network analysis and sniffing tools",
+      "category": "tools",
+      "estimatedTime": 40,
+      "icon": "fas fa-search",
+      "tags": ["wireshark", "sniffing", "network-analysis", "windows", "tools"],
+      "lessons": [
+        {
+          "id": "wireshark-analysis",
+          "title": "Wireshark Network Analysis",
+          "description": "Master Wireshark for network protocol analysis",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "wireshark-intro",
+              "type": "text",
+              "title": "About Wireshark",
+              "content": "Wireshark is the world's foremost network protocol analyzer. It allows you to see network traffic at a microscopic level and is the standard for network analysis across enterprises and educational institutions."
+            },
+            {
+              "id": "wireshark-capabilities",
+              "type": "text",
+              "title": "Key Capabilities",
+              "content": "• Deep inspection of hundreds of protocols\n• Live capture and offline analysis\n• Rich VoIP analysis\n• Powerful display filters\n• Cross-platform compatibility\n• Decrypt protocols like WEP, WPA/WPA2"
+            },
+            {
+              "id": "capture-basics",
+              "type": "text",
+              "title": "Basic Capture Process",
+              "content": "1. Select network interface\n2. Start capture\n3. Apply display filters\n4. Analyze packet details\n5. Follow TCP/UDP streams\n6. Export relevant data"
+            }
+          ]
+        },
+        {
+          "id": "cain-abel",
+          "title": "Cain & Abel Password Recovery",
+          "description": "Password cracking and network sniffing with Cain & Abel",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "cain-intro",
+              "type": "text",
+              "title": "Cain & Abel Overview",
+              "content": "Cain & Abel is a password recovery tool for Microsoft Windows. It can recover passwords through dictionary attacks, brute force, cryptanalysis attacks, and network packet sniffing."
+            },
+            {
+              "id": "cain-features",
+              "type": "text",
+              "title": "Key Features",
+              "content": "• Password recovery for various applications\n• Network password sniffing\n• ARP poisoning attacks\n• Dictionary and brute force attacks\n• Cryptanalysis capabilities\n• VoIP conversation recording"
+            },
+            {
+              "id": "ethical-warning",
+              "type": "warning",
+              "title": "Ethical Usage",
+              "content": "Cain & Abel should only be used for legitimate security testing with proper authorization. Unauthorized password cracking is illegal and unethical."
+            }
+          ]
+        },
+        {
+          "id": "additional-tools",
+          "title": "Additional Sniffing Tools",
+          "description": "Overview of other important Windows sniffing tools",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "smac-tool",
+              "type": "text",
+              "title": "SMAC - MAC Address Changer",
+              "content": "SMAC is a powerful MAC address spoofing tool that can activate new MAC addresses automatically after changing them. Useful for bypassing MAC-based security controls."
+            },
+            {
+              "id": "capsa-analyzer",
+              "type": "text",
+              "title": "Capsa Network Analyzer",
+              "content": "Capsa Free provides network monitoring, troubleshooting, and analysis capabilities. It offers real-time network monitoring and helps identify network problems and security issues."
+            },
+            {
+              "id": "omnipeek",
+              "type": "text",
+              "title": "OmniPeek Network Analyzer",
+              "content": "OmniPeek provides real-time analysis for various network segments including 802.11 wireless networks and voice/video over IP traffic with advanced protocol analysis."
+            },
+            {
+              "id": "xarp-detection",
+              "type": "text",
+              "title": "XArp - ARP Spoofing Detection",
+              "content": "XArp detects ARP-based attacks using active and passive detection modules. It protects against ARP spoofing attacks that firewalls and operating systems cannot detect."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
