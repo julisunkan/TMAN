@@ -1,5 +1,6 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import MobileHeader from "@/components/layout/mobile-header";
 import BottomNavigation from "@/components/layout/bottom-navigation";
 import TutorialContent from "@/components/tutorial/tutorial-content"; 
@@ -34,6 +35,11 @@ export default function Tutorial() {
 
   const { getModuleProgress, updateLessonProgress } = useProgress();
   const progress = getModuleProgress(moduleId!);
+
+  // Scroll to top when lesson changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [lessonId, moduleId]);
 
   if (isLoading) {
     return (
@@ -190,7 +196,7 @@ export default function Tutorial() {
                           <Clock className="w-3 h-3" />
                           <span>{lesson.estimatedTime} min</span>
                         </div>
-                        <Badge variant="outline" size="sm">
+                        <Badge variant="outline">
                           {lesson.type}
                         </Badge>
                       </div>
@@ -240,7 +246,7 @@ export default function Tutorial() {
             <Clock className="w-3 h-3" />
             <span>{currentLesson.estimatedTime} min</span>
           </div>
-          <Badge variant="outline" size="sm">
+          <Badge variant="outline">
             {currentLesson.type}
           </Badge>
         </div>
