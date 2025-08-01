@@ -105,7 +105,7 @@ export default function Tools() {
           features: ["Remote control", "Keylogging", "File manipulation"],
           platform: "Windows",
           warning: true
-        }
+        } as const
       ]
     }
   ];
@@ -158,7 +158,7 @@ export default function Tools() {
                         <div>
                           <h3 className="font-semibold flex items-center space-x-2">
                             <span>{tool.name}</span>
-                            {tool.warning && (
+                            {'warning' in tool && tool.warning && (
                               <Badge variant="destructive" className="text-xs">
                                 Caution
                               </Badge>

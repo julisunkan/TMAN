@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import MobileHeader from "@/components/layout/mobile-header";
 import BottomNavigation from "@/components/layout/bottom-navigation";
 import ProgressIndicator from "@/components/tutorial/progress-indicator";
@@ -34,10 +35,10 @@ export default function Home() {
   ];
 
   const quickTools = [
-    { icon: Terminal, title: "Command Helper", description: "Quick reference guide", color: "border-[hsl(120,100%,50%)]/20 hover:border-[hsl(120,100%,50%)]/40" },
-    { icon: Bookmark, title: "Bookmarks", description: "Saved sections", color: "border-[hsl(207,90%,54%)]/20 hover:border-[hsl(207,90%,54%)]/40" },
-    { icon: ClipboardList, title: "Cheat Sheets", description: "Essential commands", color: "border-[hsl(14,100%,60%)]/20 hover:border-[hsl(14,100%,60%)]/40" },
-    { icon: TrendingUp, title: "Progress", description: "Track your journey", color: "border-purple-400/20 hover:border-purple-400/40" }
+    { icon: Terminal, title: "Command Helper", description: "Quick reference guide", color: "border-[hsl(120,100%,50%)]/20 hover:border-[hsl(120,100%,50%)]/40", href: "/tools" },
+    { icon: Bookmark, title: "Bookmarks", description: "Saved sections", color: "border-[hsl(207,90%,54%)]/20 hover:border-[hsl(207,90%,54%)]/40", href: "/modules" },
+    { icon: ClipboardList, title: "Cheat Sheets", description: "Essential commands", color: "border-[hsl(14,100%,60%)]/20 hover:border-[hsl(14,100%,60%)]/40", href: "/tools" },
+    { icon: TrendingUp, title: "Progress", description: "Track your journey", color: "border-purple-400/20 hover:border-purple-400/40", href: "/achievements" }
   ];
 
   if (isLoading) {
@@ -100,7 +101,7 @@ export default function Home() {
               <ModuleCard 
                 key={module.id} 
                 module={module} 
-                progress={progress}
+                progress={progress || undefined}
                 index={index}
               />
             );
@@ -114,15 +115,17 @@ export default function Home() {
             {quickTools.map((tool, index) => {
               const IconComponent = tool.icon;
               return (
-                <Card key={index} className={`bg-gradient-to-br from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] border ${tool.color} transition-colors cursor-pointer hover:scale-105 transform duration-200`}>
-                  <CardContent className="p-4">
-                    <div className="w-8 h-8 bg-[hsl(120,100%,50%)]/20 rounded-lg flex items-center justify-center mb-3">
-                      <IconComponent className="w-4 h-4 text-[hsl(120,100%,50%)]" />
-                    </div>
-                    <h4 className="font-medium mb-1">{tool.title}</h4>
-                    <p className="text-xs text-[hsl(215,16%,47%)]">{tool.description}</p>
-                  </CardContent>
-                </Card>
+                <Link key={index} href={tool.href}>
+                  <Card className={`bg-gradient-to-br from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] border ${tool.color} transition-colors cursor-pointer hover:scale-105 transform duration-200`}>
+                    <CardContent className="p-4">
+                      <div className="w-8 h-8 bg-[hsl(120,100%,50%)]/20 rounded-lg flex items-center justify-center mb-3">
+                        <IconComponent className="w-4 h-4 text-[hsl(120,100%,50%)]" />
+                      </div>
+                      <h4 className="font-medium mb-1">{tool.title}</h4>
+                      <p className="text-xs text-[hsl(215,16%,47%)]">{tool.description}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               );
             })}
           </div>
