@@ -5,8 +5,7 @@ import {
   Home, 
   BookOpen, 
   Settings, 
-  Trophy, 
-  User 
+  Trophy 
 } from "lucide-react";
 
 interface NavItem {
@@ -23,8 +22,7 @@ export default function BottomNavigation() {
     { path: "/", icon: Home, label: "Home" },
     { path: "/modules", icon: BookOpen, label: "Modules" },
     { path: "/tools", icon: Settings, label: "Tools" },
-    { path: "/achievements", icon: Trophy, label: "Achievements", badge: 1 },
-    { path: "/profile", icon: User, label: "Profile" }
+    { path: "/achievements", icon: Trophy, label: "Achievements", badge: 1 }
   ];
 
   const isActive = (path: string) => {

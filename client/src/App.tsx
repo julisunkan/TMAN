@@ -8,7 +8,7 @@ import Tutorial from "@/pages/tutorial";
 import Modules from "@/pages/modules";
 import Tools from "@/pages/tools";
 import Achievements from "@/pages/achievements";
-import Profile from "@/pages/profile";
+
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,7 +20,7 @@ function Router() {
       <Route path="/tutorial/:moduleId/:lessonId" component={Tutorial} />
       <Route path="/tools" component={Tools} />
       <Route path="/achievements" component={Achievements} />
-      <Route path="/profile" component={Profile} />
+
       <Route component={NotFound} />
     </Switch>
   );
