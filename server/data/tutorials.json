@@ -763,8 +763,8 @@
       ]
     },
     {
-      "id": "windows-sniffing-tools",
-      "title": "Windows Network Sniffing Tools",
+      "id": "advanced-sniffing-tools",
+      "title": "Advanced Network Sniffing Tools",
       "description": "Comprehensive guide to Windows-based network analysis and sniffing tools",
       "category": "tools",
       "estimatedTime": 45,

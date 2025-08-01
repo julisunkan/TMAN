@@ -13,7 +13,8 @@ import {
   Clock, 
   BookOpen,
   CheckCircle,
-  Circle
+  Circle,
+  Home
 } from "lucide-react";
 import { TutorialModule } from "@shared/schema";
 import { useProgress } from "@/hooks/use-progress";
@@ -24,6 +25,11 @@ export default function Tutorial() {
   
   const { data: module, isLoading } = useQuery<TutorialModule>({
     queryKey: ["/api/tutorials", moduleId],
+  });
+
+  // Get all modules for navigation
+  const { data: allModulesData } = useQuery<{ modules: TutorialModule[] }>({
+    queryKey: ["/api/tutorials"],
   });
 
   const { getModuleProgress, updateLessonProgress } = useProgress();
@@ -61,6 +67,12 @@ export default function Tutorial() {
   const completedLessons = progress?.completedLessons || [];
   const moduleProgress = (completedLessons.length / module.lessons.length) * 100;
 
+  // Module navigation
+  const allModules = allModulesData?.modules || [];
+  const currentModuleIndex = allModules.findIndex(m => m.id === moduleId);
+  const nextModule = allModules[currentModuleIndex + 1];
+  const prevModule = allModules[currentModuleIndex - 1];
+
   const handleCompleteLesson = () => {
     if (currentLesson) {
       updateLessonProgress(moduleId!, currentLesson.id, true);
@@ -75,11 +87,16 @@ export default function Tutorial() {
         
         {/* Module Header */}
         <div className="bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] px-4 py-6">
-          <div className="flex items-center mb-4">
+          <div className="flex items-center justify-between mb-4">
             <Link href="/">
               <Button variant="ghost" size="sm" className="text-[hsl(120,100%,50%)] hover:bg-[hsl(120,100%,50%)]/10">
-                <ChevronLeft className="w-4 h-4 mr-1" />
-                Back
+                <Home className="w-4 h-4 mr-1" />
+                Home
+              </Button>
+            </Link>
+            <Link href="/modules">
+              <Button variant="ghost" size="sm" className="text-[hsl(207,90%,54%)] hover:bg-[hsl(207,90%,54%)]/10">
+                All Modules
               </Button>
             </Link>
           </div>
@@ -110,6 +127,35 @@ export default function Tutorial() {
               <span className="text-sm font-medium">{Math.round(moduleProgress)}%</span>
             </div>
             <Progress value={moduleProgress} className="h-2" />
+          </div>
+          
+          {/* Module Navigation */}
+          <div className="flex justify-between items-center mt-4 pt-4 border-t border-[hsl(240,3.7%,15.9%)]">
+            {prevModule ? (
+              <Link href={`/tutorial/${prevModule.id}`}>
+                <Button variant="outline" size="sm" className="text-xs">
+                  <ChevronLeft className="w-3 h-3 mr-1" />
+                  {prevModule.title}
+                </Button>
+              </Link>
+            ) : (
+              <div></div>
+            )}
+            
+            <Badge variant="secondary" className="bg-[hsl(240,10%,6%)]/50 text-xs">
+              Module {currentModuleIndex + 1} of {allModules.length}
+            </Badge>
+            
+            {nextModule ? (
+              <Link href={`/tutorial/${nextModule.id}`}>
+                <Button variant="outline" size="sm" className="text-xs">
+                  {nextModule.title}
+                  <ChevronRight className="w-3 h-3 ml-1" />
+                </Button>
+              </Link>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
 
@@ -215,6 +261,13 @@ export default function Tutorial() {
                 Previous
               </Button>
             </Link>
+          ) : prevModule ? (
+            <Link href={`/tutorial/${prevModule.id}`}>
+              <Button variant="outline" size="sm" className="text-xs">
+                <ChevronLeft className="w-3 h-3 mr-1" />
+                {prevModule.title}
+              </Button>
+            </Link>
           ) : (
             <div></div>
           )}
@@ -232,6 +285,13 @@ export default function Tutorial() {
               <Button size="sm">
                 Next
                 <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </Link>
+          ) : nextModule ? (
+            <Link href={`/tutorial/${nextModule.id}`}>
+              <Button size="sm" className="text-xs">
+                {nextModule.title}
+                <ChevronRight className="w-3 h-3 ml-1" />
               </Button>
             </Link>
           ) : (
