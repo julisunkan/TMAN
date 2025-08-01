@@ -79,21 +79,21 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
   const StatusIconComponent = statusIcon.icon;
 
   return (
-    <Card className={`bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] rounded-xl border overflow-hidden transition-all duration-200 hover:scale-[1.02] ${getStatusColor()}`}>
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center space-x-3">
-            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${statusIcon.color}`}>
-              <StatusIconComponent className={`w-5 h-5 ${isCompleted ? 'text-[hsl(240,10%,6%)]' : ''}`} />
+    <Card className={`bg-white rounded-2xl border shadow-lg overflow-hidden transition-all duration-200 hover:scale-[1.02] hover:shadow-xl ${getStatusColor()}`}>
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-4">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${statusIcon.color} shadow-md`}>
+              <StatusIconComponent className={`w-6 h-6 ${isCompleted ? 'text-white' : ''}`} />
             </div>
             <div>
-              <h3 className="font-semibold">{module.title}</h3>
+              <h3 className="font-bold text-gray-800 text-lg">{module.title}</h3>
               <div className="flex items-center space-x-2">
-                <p className={`text-xs ${statusText.color}`}>
+                <p className={`text-sm ${statusText.color} font-medium`}>
                   Module {index + 1} • {statusText.text}
                 </p>
                 {showCategory && (
-                  <Badge className={`text-xs ${getCategoryColor(module.category)} border-0`}>
+                  <Badge className={`text-xs ${getCategoryColor(module.category)} border-0 font-medium`}>
                     {module.category}
                   </Badge>
                 )}
@@ -101,40 +101,40 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
             </div>
           </div>
           <div className="text-right">
-            <div className="text-xs text-[hsl(215,16%,47%)]">{module.estimatedTime} min</div>
-            <div className={`text-xs ${progress ? statusText.color : 'text-[hsl(215,16%,47%)]'}`}>
+            <div className="text-sm text-gray-600 font-medium">{module.estimatedTime} min</div>
+            <div className={`text-sm font-bold ${progress ? statusText.color : 'text-gray-500'}`}>
               {progress ? `${Math.round(progress.percentage)}%` : '0%'}
             </div>
           </div>
         </div>
         
-        <p className="text-sm text-[hsl(215,16%,47%)] mb-4">{module.description}</p>
+        <p className="text-sm text-gray-600 mb-4">{module.description}</p>
         
         {/* Progress bar for in-progress modules */}
         {isInProgress && (
-          <div className="w-full bg-[hsl(240,10%,6%)] rounded-full h-2 mb-4">
+          <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
             <div 
-              className="bg-gradient-to-r from-[hsl(207,90%,54%)] to-[hsl(120,100%,50%)] h-2 rounded-full transition-all duration-300" 
+              className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-300 shadow-sm" 
               style={{ width: `${progress?.percentage || 0}%` }}
             />
           </div>
         )}
         
         <div className="flex items-center justify-between">
-          <div className="flex space-x-1">
+          <div className="flex space-x-2 items-center">
             {module.lessons.map((_, lessonIndex) => (
               <div 
                 key={lessonIndex}
-                className={`w-2 h-2 rounded-full ${
+                className={`w-3 h-3 rounded-full ${
                   progress?.completedLessons.includes(module.lessons[lessonIndex].id)
-                    ? 'bg-[hsl(120,100%,50%)]'
+                    ? 'bg-green-500 shadow-sm'
                     : isInProgress && lessonIndex === (progress?.currentLessonIndex || 0)
-                      ? 'bg-[hsl(207,90%,54%)]'
-                      : 'bg-gray-600'
+                      ? 'bg-blue-500 shadow-sm'
+                      : 'bg-gray-300'
                 }`}
               />
             ))}
-            <span className="text-xs text-[hsl(215,16%,47%)] ml-2">
+            <span className="text-sm text-gray-600 ml-2 font-medium">
               {module.lessons.length} lessons
             </span>
           </div>
@@ -144,8 +144,8 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
               size="sm" 
               className={
                 isCompleted 
-                  ? "bg-[hsl(120,100%,50%)]/20 text-[hsl(120,100%,50%)] border border-[hsl(120,100%,50%)]/30 hover:bg-[hsl(120,100%,50%)]/30" 
-                  : "bg-[hsl(207,90%,54%)] text-white hover:bg-[hsl(207,90%,64%)]"
+                  ? "bg-green-100 text-green-700 border border-green-300 hover:bg-green-200 font-medium shadow-sm" 
+                  : "bg-blue-500 text-white hover:bg-blue-600 font-medium shadow-sm"
               }
             >
               {isCompleted ? "Review" : isInProgress ? "Continue" : "Start"}
@@ -156,17 +156,17 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
       
       {/* Expandable Content */}
       {isInProgress && (
-        <div className="border-t border-[hsl(207,90%,54%)]/20 bg-[hsl(240,10%,6%)]/30">
+        <div className="border-t border-blue-200 bg-blue-50/50">
           <Button
             variant="ghost"
-            className="w-full p-4 text-left flex items-center justify-between hover:bg-[hsl(240,10%,6%)]/50 transition-colors"
+            className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-100 transition-colors text-gray-700"
             onClick={() => setIsExpanded(!isExpanded)}
           >
             <span className="text-sm font-medium">View Lessons</span>
             {isExpanded ? (
-              <ChevronUp className="w-4 h-4 text-[hsl(207,90%,54%)]" />
+              <ChevronUp className="w-4 h-4 text-blue-600" />
             ) : (
-              <ChevronDown className="w-4 h-4 text-[hsl(207,90%,54%)]" />
+              <ChevronDown className="w-4 h-4 text-blue-600" />
             )}
           </Button>
           
@@ -182,43 +182,43 @@ export default function ModuleCard({ module, progress, index, showCategory = fal
                     key={lesson.id}
                     className={`flex items-center space-x-3 p-3 rounded-lg ${
                       isLessonCompleted 
-                        ? 'bg-[hsl(120,100%,50%)]/10 border border-[hsl(120,100%,50%)]/20'
+                        ? 'bg-green-100 border border-green-300'
                         : isCurrentLesson
-                          ? 'bg-[hsl(207,90%,54%)]/10 border border-[hsl(207,90%,54%)]/30'
-                          : 'bg-[hsl(227,39%,23%)]/50'
+                          ? 'bg-blue-100 border border-blue-300'
+                          : 'bg-gray-100 border border-gray-200'
                     }`}
                   >
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
                       isLessonCompleted 
-                        ? 'bg-[hsl(120,100%,50%)]'
+                        ? 'bg-green-500'
                         : isCurrentLesson
-                          ? 'bg-[hsl(207,90%,54%)] animate-pulse'
-                          : 'bg-gray-600'
+                          ? 'bg-blue-500 animate-pulse'
+                          : 'bg-gray-400'
                     }`}>
                       {isLessonCompleted ? (
-                        <Check className="w-3 h-3 text-[hsl(240,10%,6%)]" />
+                        <Check className="w-3 h-3 text-white" />
                       ) : isCurrentLesson ? (
                         <Play className="w-3 h-3 text-white" />
                       ) : (
-                        <LessonIcon className="w-3 h-3 text-gray-400" />
+                        <LessonIcon className="w-3 h-3 text-white" />
                       )}
                     </div>
                     <div className="flex-1">
-                      <h5 className="text-sm font-medium">{lesson.title}</h5>
-                      <p className="text-xs text-[hsl(215,16%,47%)]">{lesson.description}</p>
+                      <h5 className="text-sm font-bold text-gray-800">{lesson.title}</h5>
+                      <p className="text-xs text-gray-600">{lesson.description}</p>
                       <div className="flex items-center space-x-2 mt-1">
-                        <LessonIcon className="w-3 h-3 text-[hsl(215,16%,47%)]" />
-                        <span className="text-xs text-[hsl(215,16%,47%)]">{lesson.type}</span>
-                        <Clock className="w-3 h-3 text-[hsl(215,16%,47%)]" />
-                        <span className="text-xs text-[hsl(215,16%,47%)]">{lesson.estimatedTime}min</span>
+                        <LessonIcon className="w-3 h-3 text-gray-500" />
+                        <span className="text-xs text-gray-500">{lesson.type}</span>
+                        <Clock className="w-3 h-3 text-gray-500" />
+                        <span className="text-xs text-gray-500">{lesson.estimatedTime}min</span>
                       </div>
                     </div>
-                    <div className={`text-xs ${
+                    <div className={`text-xs font-medium ${
                       isLessonCompleted 
-                        ? 'text-[hsl(120,100%,50%)]'
+                        ? 'text-green-600'
                         : isCurrentLesson
-                          ? 'text-[hsl(207,90%,54%)]'
-                          : 'text-[hsl(215,16%,47%)]'
+                          ? 'text-blue-600'
+                          : 'text-gray-500'
                     }`}>
                       {isLessonCompleted ? "✓" : isCurrentLesson ? "Current" : "Locked"}
                     </div>

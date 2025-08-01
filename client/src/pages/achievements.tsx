@@ -21,6 +21,27 @@ export default function Achievements() {
   const { getOverallProgress } = useProgress();
   const progress = getOverallProgress();
 
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      milestone: "from-blue-100 to-blue-200 border-blue-300",
+      skill: "from-green-100 to-green-200 border-green-300", 
+      challenge: "from-yellow-100 to-yellow-200 border-yellow-300",
+      mastery: "from-red-100 to-red-200 border-red-300",
+      habit: "from-purple-100 to-purple-200 border-purple-300"
+    };
+    return colors[category as keyof typeof colors] || "from-gray-100 to-gray-200 border-gray-300";
+  };
+
+  const getRarityColor = (rarity: string) => {
+    const colors = {
+      common: "text-gray-600",
+      uncommon: "text-green-600",
+      rare: "text-blue-600", 
+      legendary: "text-purple-600"
+    };
+    return colors[rarity as keyof typeof colors] || "text-gray-600";
+  };
+
   const achievements = [
     {
       id: "first-steps",
@@ -93,13 +114,13 @@ export default function Achievements() {
     level: Math.floor(achievements.filter(a => a.earned).reduce((sum, a) => sum + a.points, 0) / 500) + 1
   };
 
-  const getRarityColor = (rarity: string) => {
+  const getOldRarityColor = (rarity: string) => {
     switch (rarity) {
       case "common": return "text-gray-400 border-gray-400/20";
-      case "uncommon": return "text-[hsl(120,100%,50%)] border-[hsl(120,100%,50%)]/20";
-      case "rare": return "text-[hsl(207,90%,54%)] border-[hsl(207,90%,54%)]/20";
-      case "epic": return "text-purple-400 border-purple-400/20";
-      case "legendary": return "text-[hsl(14,100%,60%)] border-[hsl(14,100%,60%)]/20";
+      case "uncommon": return "text-green-500 border-green-500/20";
+      case "rare": return "text-blue-500 border-blue-500/20";
+      case "epic": return "text-purple-500 border-purple-500/20";
+      case "legendary": return "text-red-500 border-red-500/20";
       default: return "text-gray-400 border-gray-400/20";
     }
   };
@@ -116,35 +137,35 @@ export default function Achievements() {
   };
 
   return (
-    <div className="min-h-screen bg-[hsl(240,10%,6%)] pb-20">
+    <div className="min-h-screen pb-20">
       <MobileHeader />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] px-4 py-6">
-        <h1 className="text-2xl font-bold mb-2">Achievements</h1>
-        <p className="text-[hsl(215,16%,47%)]">Track your progress and unlock rewards</p>
+      <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 px-4 py-8 mx-4 mt-4 rounded-3xl shadow-lg border border-purple-200">
+        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Achievements</h1>
+        <p className="text-gray-600 text-lg">Track your progress and unlock rewards</p>
         
         {/* Stats Cards */}
         <div className="grid grid-cols-2 gap-4 mt-6">
-          <Card className="bg-[hsl(240,6%,10%)]/50 border-[hsl(240,3.7%,15.9%)]">
+          <Card className="bg-white/80 border-purple-200 shadow-lg">
             <CardContent className="p-4 text-center">
               <div className="flex items-center justify-center space-x-2 mb-2">
-                <Trophy className="w-5 h-5 text-[hsl(120,100%,50%)]" />
-                <span className="text-lg font-bold">{stats.totalEarned}</span>
+                <Trophy className="w-5 h-5 text-yellow-500" />
+                <span className="text-lg font-bold text-gray-800">{stats.totalEarned}</span>
               </div>
-              <div className="text-xs text-[hsl(215,16%,47%)]">Achievements Earned</div>
-              <Progress value={(stats.totalEarned / stats.totalAvailable) * 100} className="h-1 mt-2" />
+              <div className="text-xs text-gray-600">Achievements Earned</div>
+              <Progress value={(stats.totalEarned / stats.totalAvailable) * 100} className="h-2 mt-2" />
             </CardContent>
           </Card>
           
-          <Card className="bg-[hsl(240,6%,10%)]/50 border-[hsl(240,3.7%,15.9%)]">
+          <Card className="bg-white/80 border-blue-200 shadow-lg">
             <CardContent className="p-4 text-center">
               <div className="flex items-center justify-center space-x-2 mb-2">
-                <Star className="w-5 h-5 text-[hsl(14,100%,60%)]" />
-                <span className="text-lg font-bold">{stats.totalPoints}</span>
+                <Star className="w-5 h-5 text-blue-500" />
+                <span className="text-lg font-bold text-gray-800">{stats.totalPoints}</span>
               </div>
-              <div className="text-xs text-[hsl(215,16%,47%)]">Total Points</div>
-              <div className="text-xs text-[hsl(207,90%,54%)] mt-1">Level {stats.level}</div>
+              <div className="text-xs text-gray-600">Total Points</div>
+              <div className="text-xs text-blue-600 font-medium mt-1">Level {stats.level}</div>
             </CardContent>
           </Card>
         </div>
@@ -153,68 +174,69 @@ export default function Achievements() {
       <main className="px-4 py-6">
         {/* Achievement Categories */}
         <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-4">Your Achievements</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Your Achievements</h2>
           
-          <div className="space-y-3">
+          <div className="space-y-4">
             {achievements.map((achievement) => {
               const IconComponent = achievement.icon;
               const CategoryIcon = getCategoryIcon(achievement.category);
+              const categoryColors = getCategoryColor(achievement.category);
               const rarityStyles = getRarityColor(achievement.rarity);
               
               return (
                 <Card 
                   key={achievement.id} 
-                  className={`bg-[hsl(240,6%,10%)] border ${
+                  className={`bg-gradient-to-r ${categoryColors} shadow-lg border-0 ${
                     achievement.earned 
-                      ? "border-[hsl(120,100%,50%)]/30 bg-[hsl(120,100%,50%)]/5" 
-                      : "border-[hsl(240,3.7%,15.9%)] opacity-60"
-                  } transition-all duration-200`}
+                      ? "opacity-100" 
+                      : "opacity-60"
+                  } transition-all duration-200 hover:shadow-xl`}
                 >
                   <CardContent className="p-4">
-                    <div className="flex items-start space-x-3">
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                    <div className="flex items-start space-x-4">
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
                         achievement.earned 
-                          ? "bg-[hsl(120,100%,50%)]/20 glow-effect" 
-                          : "bg-gray-600"
+                          ? "bg-white/90 shadow-lg" 
+                          : "bg-white/50"
                       }`}>
-                        <IconComponent className={`w-6 h-6 ${
-                          achievement.earned ? "text-[hsl(120,100%,50%)]" : "text-gray-400"
+                        <IconComponent className={`w-8 h-8 ${
+                          achievement.earned ? rarityStyles.split(' ')[0] : "text-gray-400"
                         }`} />
                       </div>
                       
                       <div className="flex-1">
                         <div className="flex items-center space-x-2 mb-1">
-                          <h3 className="font-semibold">{achievement.title}</h3>
+                          <h3 className="font-bold text-gray-800">{achievement.title}</h3>
                           {achievement.earned && (
-                            <Badge className="bg-[hsl(120,100%,50%)]/20 text-[hsl(120,100%,50%)] border-[hsl(120,100%,50%)]/30">
-                              Earned
+                            <Badge className="bg-green-100 text-green-700 border-green-300">
+                              Earned ✓
                             </Badge>
                           )}
                         </div>
                         
-                        <p className="text-sm text-[hsl(215,16%,47%)] mb-2">
+                        <p className="text-sm text-gray-600 mb-2">
                           {achievement.description}
                         </p>
                         
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3 text-xs">
-                            <div className="flex items-center space-x-1">
+                            <div className="flex items-center space-x-1 text-gray-600">
                               <CategoryIcon className="w-3 h-3" />
                               <span className="capitalize">{achievement.category}</span>
                             </div>
                             
-                            <Badge variant="outline" className={`text-xs ${rarityStyles} capitalize`}>
+                            <Badge variant="outline" className={`text-xs ${rarityStyles} capitalize border-current`}>
                               {achievement.rarity}
                             </Badge>
                             
-                            <div className="flex items-center space-x-1">
-                              <Star className="w-3 h-3 text-[hsl(14,100%,60%)]" />
+                            <div className="flex items-center space-x-1 text-gray-600">
+                              <Star className="w-3 h-3 text-yellow-500" />
                               <span>{achievement.points} pts</span>  
                             </div>
                           </div>
                           
                           {achievement.earned && achievement.earnedDate && (
-                            <div className="text-xs text-[hsl(215,16%,47%)] flex items-center space-x-1">
+                            <div className="text-xs text-gray-500 flex items-center space-x-1">
                               <Clock className="w-3 h-3" />
                               <span>{new Date(achievement.earnedDate).toLocaleDateString()}</span>
                             </div>
@@ -230,35 +252,35 @@ export default function Achievements() {
         </div>
 
         {/* Progress Overview */}
-        <Card className="bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,6%,10%)] border-[hsl(120,100%,50%)]/20">
-          <CardContent className="p-4">
-            <div className="flex items-center space-x-2 mb-3">
-              <TrendingUp className="w-5 h-5 text-[hsl(207,90%,54%)]" />
-              <h3 className="font-semibold">Progress Overview</h3>
+        <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200 shadow-lg">
+          <CardContent className="p-6">
+            <div className="flex items-center space-x-2 mb-4">
+              <TrendingUp className="w-6 h-6 text-blue-600" />
+              <h3 className="font-bold text-xl text-gray-800">Progress Overview</h3>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-6 text-sm">
               <div>
-                <div className="flex justify-between mb-1">
-                  <span>Modules Completed</span>
-                  <span className="font-medium">{progress.currentModule}/{progress.totalModules}</span>
+                <div className="flex justify-between mb-2">
+                  <span className="text-gray-700">Modules Completed</span>
+                  <span className="font-bold text-gray-800">{progress.currentModule}/{progress.totalModules}</span>
                 </div>
-                <Progress value={progress.percentage} className="h-2" />
+                <Progress value={progress.percentage} className="h-3" />
               </div>
               
               <div>
-                <div className="flex justify-between mb-1">
-                  <span>Current Level</span>
-                  <span className="font-medium text-[hsl(207,90%,54%)]">Level {stats.level}</span>
+                <div className="flex justify-between mb-2">
+                  <span className="text-gray-700">Current Level</span>
+                  <span className="font-bold text-blue-600">Level {stats.level}</span>
                 </div>
                 <Progress value={(stats.totalPoints % 500) / 5} className="h-2" />
               </div>
             </div>
             
-            <div className="mt-4 pt-3 border-t border-[hsl(240,3.7%,15.9%)] text-xs text-[hsl(215,16%,47%)]">
+            <div className="mt-4 pt-3 border-t border-gray-200 text-xs text-gray-600">
               <div className="flex justify-between">
                 <span>Next achievement in progress...</span>
-                <span>Keep learning! 🎯</span>
+                <span>Keep learning!</span>
               </div>
             </div>
           </CardContent>

@@ -22,7 +22,8 @@ export default function Tools() {
     {
       title: "Network Analysis",
       icon: Network,
-      color: "text-[hsl(207,90%,54%)]",
+      color: "text-blue-600",
+      bgColor: "bg-gradient-to-br from-blue-50 to-blue-100",
       tools: [
         {
           name: "Wireshark",
@@ -47,7 +48,8 @@ export default function Tools() {
     {
       title: "Forensics & Analysis",
       icon: Search,
-      color: "text-[hsl(120,100%,50%)]",
+      color: "text-green-600",
+      bgColor: "bg-gradient-to-br from-green-50 to-green-100",
       tools: [
         {
           name: "hdparm",
@@ -72,7 +74,8 @@ export default function Tools() {
     {
       title: "Security Testing",
       icon: Shield,
-      color: "text-[hsl(14,100%,60%)]",
+      color: "text-red-600",
+      bgColor: "bg-gradient-to-br from-red-50 to-red-100",
       tools: [
         {
           name: "KFSensor",
@@ -130,13 +133,13 @@ export default function Tools() {
   ];
 
   return (
-    <div className="min-h-screen bg-[hsl(240,10%,6%)] pb-20">
+    <div className="min-h-screen pb-20">
       <MobileHeader />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-[hsl(227,39%,23%)] to-[hsl(240,10%,6%)] px-4 py-6">
-        <h1 className="text-2xl font-bold mb-2">Security Tools</h1>
-        <p className="text-[hsl(215,16%,47%)]">Essential tools for ethical hacking and security analysis</p>
+      <div className="bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 px-4 py-8 mx-4 mt-4 rounded-3xl shadow-lg border border-red-200">
+        <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">Security Tools</h1>
+        <p className="text-gray-600 text-lg">Essential tools for ethical hacking and security analysis</p>
       </div>
 
       <main className="px-4 py-6 space-y-6">
@@ -144,36 +147,38 @@ export default function Tools() {
         {toolCategories.map((category, categoryIndex) => {
           const IconComponent = category.icon;
           return (
-            <div key={categoryIndex}>
-              <div className="flex items-center space-x-2 mb-4">
-                <IconComponent className={`w-5 h-5 ${category.color}`} />
-                <h2 className="text-lg font-semibold">{category.title}</h2>
+            <div key={categoryIndex} className={`${category.bgColor} rounded-2xl p-4 shadow-lg border border-opacity-30`}>
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-8 h-8 bg-white/80 rounded-xl flex items-center justify-center shadow-sm">
+                  <IconComponent className={`w-5 h-5 ${category.color}`} />
+                </div>
+                <h2 className="text-xl font-bold text-gray-800">{category.title}</h2>
               </div>
               
               <div className="space-y-3">
                 {category.tools.map((tool, toolIndex) => (
-                  <Card key={toolIndex} className="bg-[hsl(240,6%,10%)] border-[hsl(240,3.7%,15.9%)] hover:border-[hsl(120,100%,50%)]/30 transition-colors">
+                  <Card key={toolIndex} className="bg-white/90 border-white/50 hover:bg-white hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h3 className="font-semibold flex items-center space-x-2">
+                          <h3 className="font-bold text-gray-800 flex items-center space-x-2">
                             <span>{tool.name}</span>
                             {'warning' in tool && tool.warning && (
-                              <Badge variant="destructive" className="text-xs">
+                              <Badge variant="destructive" className="text-xs bg-red-500 text-white">
                                 Caution
                               </Badge>
                             )}
                           </h3>
-                          <p className="text-sm text-[hsl(215,16%,47%)] mt-1">{tool.description}</p>
+                          <p className="text-sm text-gray-600 mt-1">{tool.description}</p>
                         </div>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs border-gray-300 text-gray-600">
                           {tool.platform}
                         </Badge>
                       </div>
                       
                       <div className="flex flex-wrap gap-1 mt-3">
                         {tool.features.map((feature, featureIndex) => (
-                          <Badge key={featureIndex} variant="secondary" className="text-xs bg-[hsl(227,39%,23%)]/50">
+                          <Badge key={featureIndex} variant="secondary" className="text-xs bg-gray-100 text-gray-700 border-gray-200">
                             {feature}
                           </Badge>
                         ))}
