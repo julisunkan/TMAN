@@ -86,6 +86,9 @@ export class MemStorage implements IStorage {
       const progress: UserProgress = {
         ...insertProgress,
         id,
+        lessonId: insertProgress.lessonId ?? null,
+        completed: insertProgress.completed ?? false,
+        progress: insertProgress.progress ?? 0,
         lastAccessed: new Date()
       };
       this.progress.set(id, progress);
@@ -102,6 +105,8 @@ export class MemStorage implements IStorage {
     const bookmark: Bookmark = {
       ...insertBookmark,
       id,
+      lessonId: insertBookmark.lessonId ?? null,
+      sectionId: insertBookmark.sectionId ?? null,
       createdAt: new Date()
     };
     this.bookmarks.set(id, bookmark);
@@ -129,6 +134,7 @@ export class MemStorage implements IStorage {
     const achievement: Achievement = {
       ...insertAchievement,
       id,
+      metadata: insertAchievement.metadata ?? null,
       earnedAt: new Date()
     };
     this.achievements.set(id, achievement);
