@@ -761,6 +761,1316 @@
           ]
         }
       ]
+    },
+    {
+      "id": "windows-sniffing-tools",
+      "title": "Windows Network Sniffing Tools",
+      "description": "Comprehensive guide to Windows-based network analysis and sniffing tools",
+      "category": "tools",
+      "estimatedTime": 45,
+      "icon": "fas fa-search",
+      "tags": ["wireshark", "sniffing", "network-analysis", "windows", "tools"],
+      "lessons": [
+        {
+          "id": "wireshark-fundamentals",
+          "title": "Wireshark Network Protocol Analyzer",
+          "description": "Master the world's foremost network protocol analyzer",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "wireshark-intro",
+              "type": "text",
+              "title": "What is Wireshark?",
+              "content": "Wireshark is the world's foremost and widely-used network protocol analyzer. It lets you see what's happening on your network at a microscopic level and is the de facto standard across many commercial and non-profit enterprises, government agencies, and educational institutions."
+            },
+            {
+              "id": "wireshark-download",
+              "type": "text",
+              "title": "Installation",
+              "content": "Download Wireshark from the official website: https://www.wireshark.org/\n\nWireshark is available for Windows, macOS, and Linux platforms."
+            },
+            {
+              "id": "capture-basics",
+              "type": "text",
+              "title": "Basic Packet Capture",
+              "content": "Wireshark allows you to:\n• Capture live network traffic\n• Analyze protocol details\n• Filter specific traffic patterns\n• Export capture data for analysis\n• Decode encrypted protocols"
+            }
+          ]
+        },
+        {
+          "id": "cain-abel-tool",
+          "title": "Cain & Abel Password Recovery",
+          "description": "Learn password decryption and decoding techniques",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "cain-abel-intro",
+              "type": "text",
+              "title": "Cain & Abel Overview",
+              "content": "Cain & Abel is a security tool for decryption and decoding of passwords for offline programs and network services. It features powerful decoding algorithms and extensive decrypting tools."
+            },
+            {
+              "id": "cain-capabilities",
+              "type": "text",
+              "title": "Tool Capabilities",
+              "content": "Cain & Abel can recover passwords for:\n• Network sniffing and ARP poisoning\n• Cracking encrypted passwords using dictionary attacks\n• Recording VoIP conversations\n• Decoding scrambled passwords\n• Revealing password boxes"
+            },
+            {
+              "id": "download-link",
+              "type": "text",
+              "title": "Download Information",
+              "content": "Download from: https://www.filehorse.com/download-cain-and-abel/\n\nNote: This tool should only be used for legitimate security testing purposes."
+            }
+          ]
+        },
+        {
+          "id": "smac-spoofing",
+          "title": "SMAC MAC Address Changer",
+          "description": "Learn MAC address spoofing techniques",
+          "type": "hands-on",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "smac-intro",
+              "type": "text",
+              "title": "SMAC Tool Overview",
+              "content": "SMAC is a powerful and easy-to-use tool for MAC address changing (spoofing). The tool can activate a new MAC address right after changing it automatically."
+            },
+            {
+              "id": "mac-spoofing-uses",
+              "type": "text",
+              "title": "MAC Spoofing Applications",
+              "content": "MAC address spoofing is used for:\n• Bypassing MAC-based access controls\n• Network troubleshooting\n• Privacy enhancement\n• Security testing\n• Network analysis"
+            },
+            {
+              "id": "smac-download",
+              "type": "text",
+              "title": "Download SMAC",
+              "content": "Available at: https://smac.soft32.com/\n\nSMAC provides an easy graphical interface for changing MAC addresses on Windows systems."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tcpdump-analysis",
+      "title": "TCPDump Network Packet Analysis",
+      "description": "Master the premier command-line network analysis tool for packet capture and analysis",
+      "category": "intermediate",
+      "estimatedTime": 60,
+      "icon": "fas fa-terminal",
+      "tags": ["tcpdump", "packet-analysis", "networking", "command-line", "forensics"],
+      "lessons": [
+        {
+          "id": "tcpdump-basics",
+          "title": "TCPDump Fundamentals",
+          "description": "Learn basic TCPDump commands and options",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "tcpdump-intro",
+              "type": "text",
+              "title": "What is TCPDump?",
+              "content": "TCPDump is a data-network packet analyzer that runs under a command line interface. It allows users to display TCP/IP and other packets being transmitted or received over a network. TCPDump is the premier network analysis tool providing both power and simplicity."
+            },
+            {
+              "id": "basic-commands",
+              "type": "text",
+              "title": "Essential Command Options",
+              "content": "Key TCPDump options:\n• -i any: Listen on all interfaces\n• -n: Don't resolve hostnames\n• -nn: Don't resolve hostnames or port names\n• -X: Show packet contents in hex and ASCII\n• -v, -vv, -vvv: Increase verbosity\n• -c: Capture specific number of packets\n• -s: Define capture size (use -s0 for everything)"
+            },
+            {
+              "id": "basic-capture",
+              "type": "command",
+              "title": "Basic Communication Capture",
+              "content": "tcpdump -nS",
+              "copyable": true
+            },
+            {
+              "id": "verbose-capture",
+              "type": "command",
+              "title": "Verbose Capture",
+              "content": "tcpdump -nnvvS",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "packet-analysis",
+          "title": "Reading TCPDump Output",
+          "description": "Understand TCP and UDP packet structure in TCPDump output",
+          "type": "theory",
+          "estimatedTime": 25,
+          "content": [
+            {
+              "id": "tcp-structure",
+              "type": "text",
+              "title": "TCP Packet Structure",
+              "content": "Example TCP output:\n19:10:23.857236 IP 10.0.10.107.39643 > 10.0.10.102.wap-wsp: Flags [P.], seq 1330613859:1330614161, ack 2667667222, win 6142, options [nop,nop,TS val 12490995 ecr 9292714], length 302"
+            },
+            {
+              "id": "tcp-fields",
+              "type": "text",
+              "title": "TCP Field Breakdown",
+              "content": "TCP packet components:\n• Timestamp: 19:10:23.857236\n• Protocol: IP\n• Source: 10.0.10.107:39643\n• Destination: 10.0.10.102:wap-wsp\n• Flags: [P.] = PUSH + ACK\n• Sequence numbers: seq 1330613859:1330614161\n• Acknowledgment: ack 2667667222\n• Window size: win 6142\n• Length: 302 bytes"
+            },
+            {
+              "id": "udp-structure",
+              "type": "text",
+              "title": "UDP Packet Structure",
+              "content": "Example UDP output:\n13:38:54.920116 IP 10.0.10.107.17500 > 10.0.10.1.17500: UDP, length 103\n\nUDP is simpler than TCP with just timestamp, source/destination addresses and ports, protocol type, and length."
+            }
+          ]
+        },
+        {
+          "id": "advanced-filtering",
+          "title": "Advanced Filtering and Expressions",
+          "description": "Use expressions to filter specific traffic types",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "filter-types",
+              "type": "text",
+              "title": "Expression Types",
+              "content": "TCPDump supports three expression types:\n• Type: host, net, port\n• Direction: src, dst, src or dst, src and dst\n• Protocol: tcp, udp, icmp"
+            },
+            {
+              "id": "host-filtering",
+              "type": "command",
+              "title": "Filter by Host",
+              "content": "tcpdump host 8.8.8.8",
+              "copyable": true
+            },
+            {
+              "id": "direction-filtering",
+              "type": "command",
+              "title": "Source Traffic Only",
+              "content": "tcpdump src 8.8.8.8",
+              "copyable": true
+            },
+            {
+              "id": "protocol-filtering",
+              "type": "command",
+              "title": "ICMP Traffic Only",
+              "content": "tcpdump icmp",
+              "copyable": true
+            },
+            {
+              "id": "icmp-capture",
+              "type": "command",
+              "title": "Capture Two ICMP Packets",
+              "content": "tcpdump -nnvXSs 0 -c2 icmp",
+              "copyable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file-recovery-forensics",
+      "title": "Digital Forensics: File Recovery",
+      "description": "Learn file carving and recovery techniques using forensic tools",
+      "category": "advanced",
+      "estimatedTime": 75,
+      "icon": "fas fa-search-plus",
+      "tags": ["forensics", "file-recovery", "scalpel", "foremost", "carving"],
+      "lessons": [
+        {
+          "id": "file-carving-intro",
+          "title": "File Carving Fundamentals",
+          "description": "Understanding file carving principles and applications",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "carving-definition",
+              "type": "text",
+              "title": "What is File Carving?",
+              "content": "File carving is a process used in computer forensics to extract data from a disk drive or storage device without the assistance of the file system. It recovers files at unallocated space without file information and is used to recover data for digital forensic investigations."
+            },
+            {
+              "id": "carving-principles",
+              "type": "text",
+              "title": "How File Carving Works",
+              "content": "File carving works on raw data and is independent of file system structure. When a file is deleted in FAT file system, the file's directory entry becomes unallocated space, but the file data remains unchanged until overwritten. Carving tools use file headers and footers to identify and extract files."
+            },
+            {
+              "id": "forensic-applications",
+              "type": "info",
+              "title": "Forensic Applications",
+              "content": "File carving is essential for:\n• Recovering deleted evidence\n• Analyzing damaged storage devices\n• Extracting data from unallocated space\n• Digital crime investigations\n• Data breach analysis"
+            }
+          ]
+        },
+        {
+          "id": "setup-test-environment",
+          "title": "Setting Up Test Environment",
+          "description": "Create a forensic test environment with sample data",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "create-workspace",
+              "type": "command",
+              "title": "Create Forensic Directory",
+              "content": "mkdir forensic && cd /forensic/",
+              "copyable": true
+            },
+            {
+              "id": "create-virtual-hd",
+              "type": "command",
+              "title": "Create Virtual Hard Drive",
+              "content": "dd if=/dev/zero bs=1M count=100 of=/forensic/disk.img",
+              "copyable": true
+            },
+            {
+              "id": "setup-loop-device",
+              "type": "command",
+              "title": "Set Up Loop Device",
+              "content": "losetup /dev/loop0 /forensic/disk.img",
+              "copyable": true
+            },
+            {
+              "id": "create-filesystem",
+              "type": "command",
+              "title": "Create ext4 Filesystem",
+              "content": "mkfs.ext4 /dev/loop0",
+              "copyable": true
+            },
+            {
+              "id": "mount-filesystem",
+              "type": "command",
+              "title": "Mount Filesystem",
+              "content": "mkdir /mnt/disk/ && mount -o loop /forensic/disk.img /mnt/disk/",
+              "copyable": true
+            },
+            {
+              "id": "download-samples",
+              "type": "command",
+              "title": "Download Sample Files",
+              "content": "cd /mnt/disk/\ncurl -O https://www.photos-public-domain.com/wp-content/uploads/2017/12/gray-cat-with-green-eyes.jpg\ncurl -O https://www.photos-public-domain.com/wp-content/uploads/2012/10/orange-and-white-cat-in-window-sill.jpg",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "scalpel-recovery",
+          "title": "File Recovery with Scalpel",
+          "description": "Use Scalpel for automated file carving",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "install-scalpel",
+              "type": "command",
+              "title": "Install Scalpel",
+              "content": "sudo apt-get install scalpel -y",
+              "copyable": true
+            },
+            {
+              "id": "setup-config",
+              "type": "command",
+              "title": "Copy Configuration File",
+              "content": "mkdir /forensic/case && cd /forensic/case\ncp /etc/scalpel.conf /forensic/case/",
+              "copyable": true
+            },
+            {
+              "id": "configure-scalpel",
+              "type": "text",
+              "title": "Configure Scalpel",
+              "content": "Edit scalpel.conf to uncomment the jpg configuration line:\n# JPG format files\njpg    y    200000    \\xff\\xd8\\xff\\xe0\\x00\\x10    \\xff\\xd9"
+            },
+            {
+              "id": "run-scalpel",
+              "type": "command",
+              "title": "Run Scalpel Recovery",
+              "content": "scalpel -c scalpel.conf /forensic/disk.img",
+              "copyable": true
+            },
+            {
+              "id": "view-results",
+              "type": "command",
+              "title": "View Recovery Results",
+              "content": "ls -R /forensic/case/scalpel-output",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "foremost-recovery",
+          "title": "File Recovery with Foremost",
+          "description": "Alternative file carving using Foremost tool",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "install-foremost",
+              "type": "command",
+              "title": "Install Foremost",
+              "content": "sudo apt-get install foremost -y",
+              "copyable": true
+            },
+            {
+              "id": "foremost-intro",
+              "type": "text",
+              "title": "Foremost Overview",
+              "content": "Foremost recovers files using their headers, footers, and data structures. It's designed to ignore the file system structure and work at the block level."
+            },
+            {
+              "id": "run-foremost",
+              "type": "command",
+              "title": "Run Foremost Recovery",
+              "content": "foremost -t jpg -o foremost-output /forensic/disk.img",
+              "copyable": true
+            },
+            {
+              "id": "foremost-results",
+              "type": "command",
+              "title": "View Foremost Results",
+              "content": "ls -lR foremost-output/",
+              "copyable": true
+            },
+            {
+              "id": "audit-analysis",
+              "type": "text",
+              "title": "Analyze Audit File",
+              "content": "Check the audit.txt file in the output directory for detailed recovery statistics and file information."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "partition-recovery",
+      "title": "Partition Recovery Forensics",
+      "description": "Learn to recover deleted partitions using forensic tools",
+      "category": "advanced",
+      "estimatedTime": 50,
+      "icon": "fas fa-hdd",
+      "tags": ["forensics", "partition-recovery", "dcfldd", "fdisk", "data-recovery"],
+      "lessons": [
+        {
+          "id": "partition-setup",
+          "title": "Creating and Deleting Test Partition",
+          "description": "Set up a test scenario for partition recovery",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "create-partition",
+              "type": "command",
+              "title": "Create New Partition",
+              "content": "fdisk /dev/sdb",
+              "copyable": true
+            },
+            {
+              "id": "partition-steps",
+              "type": "text",
+              "title": "Partition Creation Steps",
+              "content": "In fdisk:\n1. Press 'n' for new partition\n2. Select 'p' for primary\n3. Accept default partition number (1)\n4. Accept default first sector\n5. Accept default last sector\n6. Press 'w' to write changes"
+            },
+            {
+              "id": "create-filesystem",
+              "type": "command",
+              "title": "Create ext4 Filesystem",
+              "content": "mkfs.ext4 /dev/sdb1",
+              "copyable": true
+            },
+            {
+              "id": "mount-partition",
+              "type": "command",
+              "title": "Mount and Add Data",
+              "content": "mkdir /mnt/flashdrive\nmount /dev/sdb1 /mnt/flashdrive\ncd /mnt/flashdrive",
+              "copyable": true
+            },
+            {
+              "id": "add-sample-data",
+              "type": "command",
+              "title": "Download Sample Files",
+              "content": "curl -O https://www.photos-public-domain.com/wp-content/uploads/2017/12/gray-cat-with-green-eyes.jpg",
+              "copyable": true
+            },
+            {
+              "id": "delete-partition",
+              "type": "text",
+              "title": "Delete the Partition",
+              "content": "Unmount the filesystem and use fdisk to delete the partition:\n1. umount /mnt/flashdrive\n2. fdisk /dev/sdb\n3. Press 'd' to delete partition\n4. Press 'w' to write changes"
+            }
+          ]
+        },
+        {
+          "id": "forensic-imaging",
+          "title": "Forensic Imaging with dcfldd",
+          "description": "Create forensic copies using dcfldd",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "install-dcfldd",
+              "type": "command",
+              "title": "Install dcfldd",
+              "content": "sudo apt-get install dcfldd -y",
+              "copyable": true
+            },
+            {
+              "id": "dcfldd-intro",
+              "type": "text",
+              "title": "dcfldd Overview",
+              "content": "dcfldd is an enhanced version of dd for forensics and security. It provides built-in hashing, progress reporting, and error handling specifically designed for forensic imaging."
+            },
+            {
+              "id": "create-case-folder",
+              "type": "command",
+              "title": "Create Case Directory",
+              "content": "mkdir -p /forensic/case && cd /forensic/case",
+              "copyable": true
+            },
+            {
+              "id": "create-evidence-copy",
+              "type": "command",
+              "title": "Create Evidence Copy with Hash",
+              "content": "dcfldd if=/dev/sdb of=flashdrive.dd hash=md5 hashlog=flashdrive.md5",
+              "copyable": true
+            },
+            {
+              "id": "verify-integrity",
+              "type": "text",
+              "title": "Verify Image Integrity",
+              "content": "The hashlog file contains MD5 hashes to verify the integrity of the forensic image. This ensures the evidence hasn't been tampered with during the imaging process."
+            }
+          ]
+        },
+        {
+          "id": "partition-analysis",
+          "title": "Partition Analysis and Recovery",
+          "description": "Analyze and recover the deleted partition",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "analyze-partition-table",
+              "type": "command",
+              "title": "Analyze Partition Table",
+              "content": "fdisk -l flashdrive.dd",
+              "copyable": true
+            },
+            {
+              "id": "calculate-offset",
+              "type": "text",
+              "title": "Calculate Partition Offset",
+              "content": "Use the start sector information from fdisk to calculate the byte offset:\nOffset = Start Sector × 512 bytes\n\nExample: If start sector is 2048:\nOffset = 2048 × 512 = 1,048,576 bytes"
+            },
+            {
+              "id": "mount-recovered-partition",
+              "type": "command",
+              "title": "Mount Recovered Partition",
+              "content": "mount -o ro,loop,offset=1048576 flashdrive.dd /mnt/flashdrive/",
+              "copyable": true
+            },
+            {
+              "id": "verify-recovery",
+              "type": "command",
+              "title": "Verify File Recovery",
+              "content": "ls -lia /mnt/flashdrive/*.jpg",
+              "copyable": true
+            },
+            {
+              "id": "recovery-success",
+              "type": "text",
+              "title": "Recovery Verification",
+              "content": "If files are visible with proper inode numbers, the partition recovery was successful. The data was preserved even after partition deletion because only the partition table was modified, not the actual data."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exiftool-metadata",
+      "title": "ExifTool Metadata Analysis",
+      "description": "Extract and analyze metadata from various file types using ExifTool",
+      "category": "intermediate",
+      "estimatedTime": 40,
+      "icon": "fas fa-file-alt",
+      "tags": ["metadata", "exiftool", "forensics", "osint", "privacy"],
+      "lessons": [
+        {
+          "id": "exiftool-intro",
+          "title": "ExifTool Fundamentals",
+          "description": "Understanding metadata and ExifTool capabilities",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "metadata-intro",
+              "type": "text",
+              "title": "What is Metadata?",
+              "content": "Metadata is data about data. In digital files, metadata contains information about the file's creation, modification, location, camera settings, software used, and much more. This information can be valuable for digital forensics and OSINT investigations."
+            },
+            {
+              "id": "exiftool-overview",
+              "type": "text",
+              "title": "ExifTool Overview",
+              "content": "ExifTool is a platform-independent Perl library plus command-line application for reading, writing, and editing meta information in a wide variety of files. It supports many metadata formats including EXIF, GPS, IPTC, XMP, JFIF, and more."
+            },
+            {
+              "id": "supported-formats",
+              "type": "text",
+              "title": "Supported File Types",
+              "content": "ExifTool works with:\n• Image files (JPEG, TIFF, PNG, RAW formats)\n• Document files (PDF, DOC, DOCX, XLS, XLSX)\n• Video files (MP4, AVI, MOV)\n• Audio files (MP3, FLAC, WAV)\n• Many camera-specific formats"
+            }
+          ]
+        },
+        {
+          "id": "document-analysis",
+          "title": "Document Metadata Analysis",
+          "description": "Extract metadata from office documents",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "download-sample-doc",
+              "type": "command",
+              "title": "Download Sample Document",
+              "content": "curl -O https://www.interpol.int/content/download/13927/file/WOA%20database%20application%20form.docx",
+              "copyable": true
+            },
+            {
+              "id": "extract-doc-metadata",
+              "type": "command",
+              "title": "Extract Document Metadata",
+              "content": "exiftool interpol.docx",
+              "copyable": true
+            },
+            {
+              "id": "document-metadata-analysis",
+              "type": "text",
+              "title": "Document Metadata Information",
+              "content": "Document metadata reveals:\n• Author information\n• Creation and modification dates\n• Software version used\n• Company information\n• Document revision history\n• Template information\n• Total editing time"
+            },
+            {
+              "id": "privacy-implications",
+              "type": "warning",
+              "title": "Privacy Implications",
+              "content": "Document metadata can reveal sensitive information about the creator, organization, and document history. Always sanitize metadata before sharing sensitive documents."
+            }
+          ]
+        },
+        {
+          "id": "image-analysis",
+          "title": "Image Metadata and GPS Analysis",
+          "description": "Extract location and camera data from images",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "download-sample-image",
+              "type": "command",
+              "title": "Download Sample Image",
+              "content": "curl -O https://exiftool.org/Xiaomi.tar.gz\ntar -xf xiaomi.tar.gz\ncd ~/Xiaomi/",
+              "copyable": true
+            },
+            {
+              "id": "extract-image-metadata",
+              "type": "command",
+              "title": "Extract Image Metadata",
+              "content": "exiftool XiaomiMiA2Lite.jpg",
+              "copyable": true
+            },
+            {
+              "id": "gps-data-analysis",
+              "type": "text",
+              "title": "GPS Location Data",
+              "content": "Image metadata can contain:\n• GPS coordinates (latitude/longitude)\n• Altitude information\n• Camera make and model\n• Camera settings (ISO, aperture, shutter speed)\n• Date and time of capture\n• Software used for processing"
+            },
+            {
+              "id": "location-privacy",
+              "type": "warning",
+              "title": "Location Privacy Concerns",
+              "content": "GPS metadata in images can reveal exact locations where photos were taken. This poses privacy and security risks, especially for sensitive locations or personal safety."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "packet-dissection",
+      "title": "Network Packet Dissection",
+      "description": "Deep analysis of TCP, ICMP, and ARP packet structures",
+      "category": "intermediate",
+      "estimatedTime": 55,
+      "icon": "fas fa-network-wired",
+      "tags": ["networking", "packets", "protocol-analysis", "wireshark", "tcpdump"],
+      "lessons": [
+        {
+          "id": "packet-types-overview",
+          "title": "Internet Protocol Packet Types",
+          "description": "Understanding different packet types and their characteristics",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "packet-type-intro",
+              "type": "text",
+              "title": "Packet Type Selection",
+              "content": "The Internet Protocol offers several packet protocols ranging from very fast to very reliable. Each layer has evolved to solve specific problems. To select the correct packet type, you must understand what you're transmitting and the reliability requirements."
+            },
+            {
+              "id": "packet-comparison",
+              "type": "text",
+              "title": "Packet Type Comparison",
+              "content": "Key differences:\n\n**Raw Packets:**\n• Overhead: 20-60 bytes\n• Message Size: 65,535 bytes\n• Reliability: Low\n• Throughput: High\n\n**TCP Packets:**\n• Overhead: 20-60 + 20-60 bytes\n• Message Size: Unlimited\n• Reliability: High\n• Throughput: Low\n• Stream-based\n\n**UDP Packets:**\n• Overhead: 20-60 + 8 bytes\n• Message Size: 65,535 bytes\n• Reliability: Low\n• Throughput: Medium\n• Datagram-based"
+            },
+            {
+              "id": "protocol-selection",
+              "type": "text",
+              "title": "When to Use Each Protocol",
+              "content": "**TCP:** Use for reliable data transfer (web browsing, file transfer, email)\n**UDP:** Use for real-time applications (video streaming, gaming, DNS)\n**ICMP:** Use for network diagnostics (ping, traceroute)\n**Raw:** Use for custom protocols or network tools"
+            }
+          ]
+        },
+        {
+          "id": "icmp-packet-analysis",
+          "title": "ICMP Packet Structure Analysis",
+          "description": "Detailed breakdown of ICMP packet components",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "capture-icmp",
+              "type": "command",
+              "title": "Capture ICMP Packets",
+              "content": "tcpdump -nnvvXXS -s0 -c2 icmp",
+              "copyable": true
+            },
+            {
+              "id": "icmp-packet-breakdown",
+              "type": "text",
+              "title": "ICMP Packet Structure",
+              "content": "Example ICMP packet:\naa20 66d2 5364 ca3b cc0e 1069 0800 4500\n0054 9764 0000 4001 e1ef c0a8 4003 c0a8\n4001 0000 3534 180d 0000 601a d934 0002\n\n**Ethernet Header (14 bytes):**\n• MAC Destination: aa20 66d2 5364\n• MAC Source: ca3b cc0e 1069\n• EtherType: 0800 (IPv4)"
+            },
+            {
+              "id": "ip-header-analysis",
+              "type": "text",
+              "title": "IP Header Analysis",
+              "content": "**IP Header (20 bytes):**\n• Version: 4 (IPv4)\n• Header Length: 5 (20 bytes)\n• Type of Service: 00\n• Total Length: 0054 (84 bytes)\n• Identification: 9764\n• Flags: 0 (no fragmentation)\n• TTL: 40 (64 decimal)\n• Protocol: 01 (ICMP)\n• Header Checksum: e1ef\n• Source IP: c0a8 4003 (192.168.64.3)\n• Destination IP: c0a8 4001 (192.168.64.1)"
+            },
+            {
+              "id": "icmp-data-analysis",
+              "type": "text",
+              "title": "ICMP Data Analysis",
+              "content": "**ICMP Header and Data:**\n• Type: 00 (Echo Reply)\n• Code: 00 (Default)\n• Checksum: 3534\n• Identifier: 180d\n• Sequence Number: 0000\n• Data: Timestamp and padding bytes"
+            }
+          ]
+        },
+        {
+          "id": "tcp-udp-comparison",
+          "title": "TCP vs UDP Packet Analysis",
+          "description": "Compare TCP and UDP packet structures",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "tcp-capture",
+              "type": "command",
+              "title": "Capture TCP Packets",
+              "content": "tcpdump -nnvvXXS -s0 -c5 tcp",
+              "copyable": true
+            },
+            {
+              "id": "udp-capture",
+              "type": "command",
+              "title": "Capture UDP Packets",
+              "content": "tcpdump -nnvvXXS -s0 -c5 udp",
+              "copyable": true
+            },
+            {
+              "id": "tcp-fields",
+              "type": "text",
+              "title": "TCP Header Fields",
+              "content": "TCP includes additional fields for reliability:\n• Sequence Numbers: Track data order\n• Acknowledgment Numbers: Confirm receipt\n• Window Size: Flow control\n• Flags: Control connection state\n• Options: Additional TCP features"
+            },
+            {
+              "id": "udp-simplicity",
+              "type": "text",
+              "title": "UDP Simplicity",
+              "content": "UDP header contains only:\n• Source Port (2 bytes)\n• Destination Port (2 bytes)\n• Length (2 bytes)\n• Checksum (2 bytes)\n\nTotal UDP overhead: 8 bytes vs TCP's 20+ bytes"
+            },
+            {
+              "id": "performance-implications",
+              "type": "text",
+              "title": "Performance Implications",
+              "content": "**TCP Reliability Cost:**\n• Higher overhead\n• Connection establishment\n• Acknowledgments and retransmissions\n• Flow control mechanisms\n\n**UDP Speed Benefits:**\n• Minimal overhead\n• No connection setup\n• Fire-and-forget delivery\n• No built-in error recovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trojan-obfuscation",
+      "title": "Malware Obfuscation Techniques",
+      "description": "Learn about malware obfuscation using crypters and evasion techniques",
+      "category": "advanced",
+      "estimatedTime": 45,
+      "icon": "fas fa-mask",
+      "tags": ["malware", "obfuscation", "crypter", "evasion", "analysis"],
+      "lessons": [
+        {
+          "id": "obfuscation-intro",
+          "title": "Understanding Malware Obfuscation",
+          "description": "Learn the principles and purposes of malware obfuscation",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "crypter-definition",
+              "type": "text",
+              "title": "What is a Crypter?",
+              "content": "A Crypter is software used to hide viruses, keyloggers, or RAT tools from antiviruses so they are not detected and deleted. It assigns hidden values to each individual code within the source code, making the source hidden and difficult for AV tools to scan."
+            },
+            {
+              "id": "obfuscation-methods",
+              "type": "text",
+              "title": "Common Obfuscation Techniques",
+              "content": "Malware authors use various techniques:\n• Code encryption and packing\n• Anti-debugging measures\n• Virtual machine detection\n• Polymorphic code generation\n• Dead code insertion\n• Control flow obfuscation"
+            },
+            {
+              "id": "detection-evasion",
+              "type": "text",
+              "title": "AV Evasion Strategies",
+              "content": "Crypters work by:\n• Encrypting the malicious payload\n• Using legitimate-looking wrapper code\n• Implementing runtime decryption\n• Avoiding known malicious signatures\n• Using metamorphic techniques"
+            },
+            {
+              "id": "ethical-considerations",
+              "type": "warning",
+              "title": "Ethical and Legal Considerations",
+              "content": "This information is for educational and defensive purposes only. Creating or distributing malware is illegal and unethical. Security professionals should understand these techniques to better defend against them."
+            }
+          ]
+        },
+        {
+          "id": "detection-analysis",
+          "title": "Malware Detection Analysis",
+          "description": "Analyze detection rates before and after obfuscation",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "baseline-scanning",
+              "type": "text",
+              "title": "Baseline Detection Testing",
+              "content": "Before obfuscation, upload test malware to scanning services like VirusTotal to establish baseline detection rates. Record the number of engines that detect the sample."
+            },
+            {
+              "id": "scanning-services",
+              "type": "text",
+              "title": "Online Scanning Services",
+              "content": "Popular malware scanning services:\n• VirusTotal (virustotal.com)\n• Hybrid Analysis (hybrid-analysis.com)\n• Any.run (any.run)\n• Joe Sandbox (joesandbox.com)\n\nNote: Never upload actual malware to public services"
+            },
+            {
+              "id": "detection-metrics",
+              "type": "text",
+              "title": "Detection Rate Analysis",
+              "content": "Key metrics to track:\n• Number of engines detecting\n• Detection names and categories\n• Behavioral analysis results\n• Static vs dynamic detection\n• Time to detection"
+            },
+            {
+              "id": "evasion-effectiveness",
+              "type": "text",
+              "title": "Measuring Evasion Success",
+              "content": "After applying obfuscation techniques, measure:\n• Reduction in detection rate\n• Changes in detection names\n• Delay in detection time\n• Persistence of evasion over time"
+            }
+          ]
+        },
+        {
+          "id": "defensive-measures",
+          "title": "Defending Against Obfuscated Malware",
+          "description": "Learn defensive techniques against obfuscated threats",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "behavioral-analysis",
+              "type": "text",
+              "title": "Behavioral Detection",
+              "content": "Modern defenses focus on behavior:\n• Monitor system calls and API usage\n• Analyze network communication patterns\n• Track file system modifications\n• Monitor registry changes\n• Detect anomalous process behavior"
+            },
+            {
+              "id": "sandboxing",
+              "type": "text",
+              "title": "Sandbox Analysis",
+              "content": "Sandbox environments provide:\n• Isolated execution environment\n• Dynamic behavior monitoring\n• Network traffic analysis\n• System change tracking\n• Safe malware analysis"
+            },
+            {
+              "id": "threat-hunting",
+              "type": "text",
+              "title": "Proactive Threat Hunting",
+              "content": "Hunt for indicators of compromise:\n• Unusual network connections\n• Suspicious process relationships\n• Unexpected file modifications\n• Registry persistence mechanisms\n• Memory injection techniques"
+            },
+            {
+              "id": "defense-strategies",
+              "type": "text",
+              "title": "Layered Defense Approach",
+              "content": "Implement multiple defense layers:\n• Endpoint detection and response (EDR)\n• Network monitoring and analysis\n• User behavior analytics\n• Threat intelligence integration\n• Regular security awareness training"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metasploit-fundamentals",
+      "title": "Metasploit Framework Fundamentals",
+      "description": "Master the Metasploit Framework for penetration testing and vulnerability assessment",
+      "category": "intermediate",
+      "estimatedTime": 65,
+      "icon": "fas fa-tools",
+      "tags": ["metasploit", "penetration-testing", "vulnerability-assessment", "exploitation"],
+      "lessons": [
+        {
+          "id": "metasploit-setup",
+          "title": "Metasploit Framework Setup",
+          "description": "Install and configure Metasploit with database integration",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "framework-overview",
+              "type": "text",
+              "title": "Metasploit Framework Overview",
+              "content": "The Metasploit Framework is an open-source tool that provides information about security vulnerabilities and aids in penetration testing and IDS signature development. A major advantage is the modular approach, allowing combination of any exploit with any payload."
+            },
+            {
+              "id": "start-postgresql",
+              "type": "command",
+              "title": "Start PostgreSQL Service",
+              "content": "service postgresql start",
+              "copyable": true
+            },
+            {
+              "id": "launch-metasploit",
+              "type": "command",
+              "title": "Launch Metasploit Console",
+              "content": "msfconsole",
+              "copyable": true
+            },
+            {
+              "id": "check-database",
+              "type": "command",
+              "title": "Check Database Status",
+              "content": "db_status",
+              "copyable": true
+            },
+            {
+              "id": "initialize-database",
+              "type": "text",
+              "title": "Database Initialization",
+              "content": "If database connection fails, initialize it:\n1. Exit Metasploit with 'exit'\n2. Run 'msfdb init'\n3. Restart PostgreSQL: 'service postgresql restart'\n4. Launch msfconsole again"
+            },
+            {
+              "id": "verify-connection",
+              "type": "command",
+              "title": "Verify Database Connection",
+              "content": "db_status",
+              "copyable": true
+            }
+          ]
+        },
+        {
+          "id": "host-discovery",
+          "title": "Host Discovery and Reconnaissance",
+          "description": "Use Metasploit for network reconnaissance and host discovery",
+          "type": "hands-on",
+          "estimatedTime": 25,
+          "content": [
+            {
+              "id": "nmap-integration",
+              "type": "command",
+              "title": "Network Scan with Nmap",
+              "content": "nmap -O -oX Test 10.0.2.0/24",
+              "copyable": true
+            },
+            {
+              "id": "import-results",
+              "type": "command",
+              "title": "Import Nmap Results",
+              "content": "db_import Test",
+              "copyable": true
+            },
+            {
+              "id": "view-hosts",
+              "type": "command",
+              "title": "View Discovered Hosts",
+              "content": "hosts",
+              "copyable": true
+            },
+            {
+              "id": "detailed-scan",
+              "type": "command",
+              "title": "Detailed Host Fingerprinting",
+              "content": "db_nmap -sS -A 10.0.2.28",
+              "copyable": true
+            },
+            {
+              "id": "service-enumeration",
+              "type": "command",
+              "title": "View Service Information",
+              "content": "db_services",
+              "copyable": true
+            },
+            {
+              "id": "host-analysis",
+              "type": "text",
+              "title": "Host Analysis Results",
+              "content": "The db_nmap command stores results automatically in the database. Review the hosts and services output to identify:\n• Operating system versions\n• Open ports and services\n• Service versions and banners\n• Potential vulnerabilities"
+            }
+          ]
+        },
+        {
+          "id": "port-scanning-modules",
+          "title": "Advanced Port Scanning",
+          "description": "Use Metasploit's built-in scanning modules",
+          "type": "hands-on",
+          "estimatedTime": 20,
+          "content": [
+            {
+              "id": "search-scanners",
+              "type": "command",
+              "title": "Search Port Scan Modules",
+              "content": "search portscan",
+              "copyable": true
+            },
+            {
+              "id": "syn-scanner",
+              "type": "command",
+              "title": "Use SYN Port Scanner",
+              "content": "use scanner/portscan/syn",
+              "copyable": true
+            },
+            {
+              "id": "scanner-options",
+              "type": "command",
+              "title": "View Scanner Options",
+              "content": "show options",
+              "copyable": true
+            },
+            {
+              "id": "configure-scanner",
+              "type": "command",
+              "title": "Configure Scanner Target",
+              "content": "set RHOSTS 10.0.2.23\nset THREADS 100",
+              "copyable": true
+            },
+            {
+              "id": "run-scan",
+              "type": "command",
+              "title": "Execute Port Scan",
+              "content": "run",
+              "copyable": true
+            },
+            {
+              "id": "smb-version-scan",
+              "type": "command",
+              "title": "SMB Version Detection",
+              "content": "use scanner/smb/smb_version\nset RHOSTS 10.0.2.23\nset THREADS 100\nrun",
+              "copyable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mac-spoofing-techniques",
+      "title": "MAC Address Spoofing Techniques",
+      "description": "Learn MAC address spoofing for anonymity and network testing",
+      "category": "intermediate",
+      "estimatedTime": 35,
+      "icon": "fas fa-user-secret",
+      "tags": ["mac-spoofing", "anonymity", "network-security", "kali-linux", "windows"],
+      "lessons": [
+        {
+          "id": "mac-spoofing-intro",
+          "title": "Understanding MAC Address Spoofing",
+          "description": "Learn the principles and applications of MAC address spoofing",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "mac-definition",
+              "type": "text",
+              "title": "What is MAC Spoofing?",
+              "content": "MAC spoofing is a technique for changing a factory-assigned Media Access Control (MAC) address of a network interface. While the hardware MAC address cannot be changed, many drivers allow the operating system to use a different MAC address."
+            },
+            {
+              "id": "spoofing-applications",
+              "type": "text",
+              "title": "Why Change MAC Address?",
+              "content": "MAC address spoofing is used for:\n• Increasing anonymity and privacy\n• Impersonating other devices\n• Bypassing MAC-based access filters\n• Network troubleshooting\n• Penetration testing\n• Avoiding device tracking"
+            },
+            {
+              "id": "spoofing-limitations",
+              "type": "warning",
+              "title": "Limitations and Considerations",
+              "content": "MAC spoofing only affects the local network segment. It cannot bypass:\n• Router-level filtering\n• Internet-based tracking\n• Higher-layer protocol identification\n• Deep packet inspection\n\nThe change is temporary and resets on reboot."
+            }
+          ]
+        },
+        {
+          "id": "linux-mac-spoofing",
+          "title": "MAC Spoofing on Kali Linux",
+          "description": "Use macchanger and manual methods on Linux",
+          "type": "hands-on",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "check-current-mac",
+              "type": "command",
+              "title": "Check Current MAC Address",
+              "content": "ifconfig",
+              "copyable": true
+            },
+            {
+              "id": "disable-interface",
+              "type": "command",
+              "title": "Disable Network Interface",
+              "content": "ifconfig wlan1 down",
+              "copyable": true
+            },
+            {
+              "id": "random-mac-change",
+              "type": "command",
+              "title": "Change to Random MAC",
+              "content": "macchanger -r wlan1",
+              "copyable": true
+            },
+            {
+              "id": "manual-mac-change",
+              "type": "command",
+              "title": "Manual MAC Address Change",
+              "content": "ifconfig wlan0 down\nifconfig wlan0 hw ether 00:11:22:33:44:55\nifconfig wlan0 up",
+              "copyable": true
+            },
+            {
+              "id": "verify-change",
+              "type": "command",
+              "title": "Verify MAC Address Change",
+              "content": "ifconfig",
+              "copyable": true
+            },
+            {
+              "id": "macchanger-options",
+              "type": "text",
+              "title": "Macchanger Options",
+              "content": "Useful macchanger options:\n• -r: Random MAC address\n• -a: Random MAC from same vendor\n• -A: Random MAC from any vendor\n• -p: Reset to permanent hardware MAC\n• -s: Show current MAC address\n• -l: List known vendors"
+            }
+          ]
+        },
+        {
+          "id": "windows-mac-spoofing",
+          "title": "MAC Spoofing on Windows",
+          "description": "Use SMAC tool for Windows MAC address spoofing",
+          "type": "hands-on",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "smac-tool-intro",
+              "type": "text",
+              "title": "SMAC Tool Overview",
+              "content": "SMAC is a powerful and easy-to-use GUI tool for MAC address changing on Windows systems. It can activate a new MAC address automatically after changing it."
+            },
+            {
+              "id": "smac-download",
+              "type": "text",
+              "title": "Download SMAC",
+              "content": "Download SMAC from: https://smac.soft32.com/\n\nSMAC provides a user-friendly interface for:\n• Viewing current MAC addresses\n• Changing MAC addresses\n• Generating random MAC addresses\n• Restoring original MAC addresses"
+            },
+            {
+              "id": "smac-usage",
+              "type": "text",
+              "title": "Using SMAC Tool",
+              "content": "SMAC operation steps:\n1. Launch SMAC as administrator\n2. Select the network adapter\n3. Enter new MAC address or generate random\n4. Click 'Update MAC' to apply changes\n5. Restart network adapter if required"
+            },
+            {
+              "id": "windows-verification",
+              "type": "command",
+              "title": "Verify Changes (Windows)",
+              "content": "ipconfig /all",
+              "copyable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vulnerability-scanning-overview",
+      "title": "Vulnerability Scanning Overview",
+      "description": "Introduction to vulnerability scanning tools and techniques",
+      "category": "intermediate",
+      "estimatedTime": 30,
+      "icon": "fas fa-shield-alt",
+      "tags": ["vulnerability-scanning", "nessus", "nikto", "security-assessment"],
+      "lessons": [
+        {
+          "id": "vuln-scanning-intro",
+          "title": "Vulnerability Scanning Fundamentals",
+          "description": "Understanding vulnerability scanning principles and methodologies",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "scanning-definition",
+              "type": "text",
+              "title": "What is Vulnerability Scanning?",
+              "content": "Vulnerability scanning refers to auditing hosts, ports, and services running in a network to assess the security posture and search for security loopholes. It determines the possibility of network security attacks and evaluates systems for vulnerabilities such as missing patches, unnecessary services, weak authentication, and weak encryption."
+            },
+            {
+              "id": "scanning-importance",
+              "type": "text",
+              "title": "Importance in Security Assessment",
+              "content": "Vulnerability scanning is a critical component of:\n• Penetration testing assignments\n• Security compliance audits\n• Risk assessment processes\n• Continuous security monitoring\n• Patch management programs\n• Security baseline establishment"
+            },
+            {
+              "id": "scanning-types",
+              "type": "text",
+              "title": "Types of Vulnerability Scans",
+              "content": "Common scan types include:\n• Network-based scanning\n• Host-based scanning\n• Wireless network scanning\n• Application scanning\n• Database scanning\n• Web application scanning"
+            }
+          ]
+        },
+        {
+          "id": "nessus-scanner",
+          "title": "Nessus Vulnerability Scanner",
+          "description": "Comprehensive vulnerability assessment with Nessus",
+          "type": "hands-on",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "nessus-overview",
+              "type": "text",
+              "title": "Nessus Scanner Overview",
+              "content": "Nessus allows remote network auditing to determine if systems have been compromised or misconfigured. It provides comprehensive vulnerability detection and local machine auditing capabilities."
+            },
+            {
+              "id": "nessus-capabilities",
+              "type": "text",
+              "title": "Nessus Capabilities",
+              "content": "Nessus can identify:\n• Missing security patches\n• Misconfigured systems\n• Default passwords\n• Unnecessary services\n• Compliance violations\n• Malware infections\n• Network vulnerabilities"
+            },
+            {
+              "id": "nessus-download",
+              "type": "text",
+              "title": "Getting Nessus",
+              "content": "Download from Tenable: https://www.tenable.com/downloads/nessus\n\nNessus offers different editions:\n• Nessus Essentials (free for limited use)\n• Nessus Professional\n• Nessus Expert\n• Nessus Manager"
+            }
+          ]
+        },
+        {
+          "id": "nikto-web-scanner",
+          "title": "Nikto Web Application Scanner",
+          "description": "Web server vulnerability scanning with Nikto",
+          "type": "hands-on",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "nikto-overview",
+              "type": "text",
+              "title": "Nikto Web Scanner",
+              "content": "Nikto is an Open Source web server scanner that performs comprehensive tests against web servers for multiple items, including over 6400 potentially dangerous files/CGIs, checks for outdated versions of over 1200 servers, and version-specific problems on over 270 servers."
+            },
+            {
+              "id": "nikto-features",
+              "type": "text",
+              "title": "Nikto Features",
+              "content": "Nikto scanning capabilities:\n• Dangerous files and CGI detection\n• Outdated server version identification\n• Server configuration analysis\n• Multiple index file detection\n• HTTP server options enumeration\n• Installed software identification\n• Regular plugin and database updates"
+            },
+            {
+              "id": "nikto-usage",
+              "type": "command",
+              "title": "Basic Nikto Scan",
+              "content": "nikto -h http://target-website.com",
+              "copyable": true
+            },
+            {
+              "id": "nikto-repository",
+              "type": "text",
+              "title": "Nikto Source",
+              "content": "Official repository: https://github.com/sullo/nikto\n\nNikto is included in most penetration testing distributions and can be easily installed on various platforms."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system-hacking-intro",
+      "title": "Introduction to System Hacking",
+      "description": "Foundational concepts in system hacking and computer security testing",
+      "category": "intermediate",
+      "estimatedTime": 25,
+      "icon": "fas fa-laptop-code",
+      "tags": ["system-hacking", "computer-security", "penetration-testing", "vulnerability-assessment"],
+      "lessons": [
+        {
+          "id": "system-hacking-overview",
+          "title": "System Hacking Fundamentals",
+          "description": "Understanding the scope and methodology of system hacking",
+          "type": "theory",
+          "estimatedTime": 15,
+          "content": [
+            {
+              "id": "system-hacking-definition",
+              "type": "text",
+              "title": "What is System Hacking?",
+              "content": "System hacking is the science of testing computers and networks for vulnerabilities and harmful plug-ins. It involves the compromise of computer systems and software to gain access to target computers and steal or misuse their sensitive information. System hacking exploits weaknesses in computer systems and networks."
+            },
+            {
+              "id": "hacking-methodology",
+              "type": "text",
+              "title": "System Hacking Methodology",
+              "content": "The system hacking process typically follows these phases:\n1. **Reconnaissance:** Information gathering about the target\n2. **Scanning:** Identifying live systems and open ports\n3. **Enumeration:** Extracting detailed information\n4. **Vulnerability Assessment:** Identifying security weaknesses\n5. **Exploitation:** Gaining unauthorized access\n6. **Post-Exploitation:** Maintaining access and covering tracks"
+            },
+            {
+              "id": "attack-vectors",
+              "type": "text",
+              "title": "Common Attack Vectors",
+              "content": "System hackers exploit various attack vectors:\n• Operating system vulnerabilities\n• Application security flaws\n• Network protocol weaknesses\n• Misconfigurations\n• Weak authentication mechanisms\n• Social engineering\n• Physical security gaps\n• Insider threats"
+            },
+            {
+              "id": "ethical-considerations",
+              "type": "warning",
+              "title": "Ethical Hacking Principles",
+              "content": "Ethical hacking must follow strict guidelines:\n• Obtain proper authorization before testing\n• Respect scope and boundaries\n• Minimize system disruption\n• Maintain confidentiality\n• Report findings responsibly\n• Follow legal and regulatory requirements"
+            }
+          ]
+        },
+        {
+          "id": "system-components",
+          "title": "System Components and Attack Surfaces",
+          "description": "Identifying potential attack surfaces in computer systems",
+          "type": "theory",
+          "estimatedTime": 10,
+          "content": [
+            {
+              "id": "system-layers",
+              "type": "text",
+              "title": "System Security Layers",
+              "content": "Computer systems have multiple security layers that can be targeted:\n• **Hardware Layer:** Physical components and firmware\n• **Operating System:** Kernel, drivers, and system services\n• **Application Layer:** Software applications and services\n• **Network Layer:** Communication protocols and services\n• **User Layer:** Human factors and access controls"
+            },
+            {
+              "id": "common-targets",
+              "type": "text",
+              "title": "Common Hacking Targets",
+              "content": "System hackers typically target:\n• User accounts and passwords\n• Administrative privileges\n• Network services and protocols\n• Database systems\n• Web applications\n• Email systems\n• File shares and storage\n• Backup systems"
+            },
+            {
+              "id": "defense-strategies",
+              "type": "text",
+              "title": "Defense-in-Depth Strategy",
+              "content": "Effective system security requires multiple defensive layers:\n• Perimeter security (firewalls, IDS/IPS)\n• Network segmentation\n• Access controls and authentication\n• Endpoint protection\n• Security monitoring and logging\n• Incident response capabilities\n• Security awareness training\n• Regular security assessments"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
